@@ -156,7 +156,7 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);background:var(--surf);}
 .field textarea{resize:vertical;min-height:65px;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.frow>.field{min-width:0;overflow:hidden;}
+.frow>.field{min-width:0;}
 
 /* photo */
 .photo-up{border:.5px dashed var(--rule);border-radius:var(--rs);padding:13px;text-align:center;cursor:pointer;transition:all .15s;background:var(--surf-deep);position:relative;}
@@ -519,11 +519,11 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
   <div id="h-single-qty">
     <div class="frow">
       <div class="field"><label>単価（円）</label><input id="h-price" type="number" min="0" placeholder="1200"></div>
-      <div class="field"><label>数量</label><input id="h-qty" type="number" min="0" step="0.1" placeholder="4"></div>
+      <div class="field" id="h-width-field" style="display:none"><label>生地幅（cm）</label><input id="h-width" type="number" min="0" placeholder="110"></div>
+      <div class="field" id="h-qty-col"><label>数量</label><input id="h-qty" type="number" min="0" step="0.1" placeholder="4"></div>
     </div>
   </div>
   <div class="field" id="h-unit-field"><label>単位</label><select id="h-unit" onchange="renderHistVariantRows()"><option value="m">m</option><option value="個">個</option><option value="本">本</option><option value="枚">枚</option><option value="セット">セット</option></select></div>
-  <div class="field" id="h-width-field" style="display:none"><label>生地幅（cm）</label><input id="h-width" type="number" min="0" placeholder="110"></div>
 
   <div id="h-new-fields">
     <div class="field" id="h-mat-field"><label>素材</label><input id="h-mat" list="h-mat-list" placeholder="選択または自由入力（任意）"><datalist id="h-mat-list"></datalist></div>
@@ -1134,6 +1134,7 @@ function setHistType(type){
   document.getElementById('h-type-parts').style.cssText=!isFabric?'padding:10px;border-radius:var(--rs);font-family:inherit;font-size:14px;cursor:pointer;border:2px solid var(--green);background:var(--green-l);color:var(--green-d);font-weight:500':'padding:10px;border-radius:var(--rs);font-family:inherit;font-size:14px;cursor:pointer;border:.5px solid var(--bdr-m);background:var(--bg);color:var(--t2)';
   document.getElementById('h-mat-field').style.display=isFabric?'block':'none';
   document.getElementById('h-width-field').style.display=isFabric?'block':'none';
+  document.getElementById('h-qty-col').style.gridColumn=isFabric?'1 / -1':'';
   const unitSel=document.getElementById('h-unit');
   unitSel.innerHTML='';
   const units=isFabric?['m']:['個','本','m','枚','セット'];
@@ -1436,5 +1437,4 @@ function exportCSV(type){
       rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
     });
     const sold=db.works.filter(w=>w.sell!=null);
-    const totalSell=sold.reduce((s,w)=>s+w.sell,0);
-    const totalCost=db.works.reduce((s,w)=>s+(w.materials||[]).reduce((ss
+    const totalSell=sold.reduce((s,w)=>s+w.s
