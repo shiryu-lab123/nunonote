@@ -513,9 +513,9 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
     </div>
   </div>
 
-  <div class="frow">
-    <div class="field"><label>購入日</label><input id="h-date" type="date"></div>
-    <div class="field"><label>購入先</label><select id="h-shop"><option value="">選択（任意）</option></select></div>
+  <div style="display:grid;grid-template-columns:3fr 2fr;gap:9px;">
+    <div class="field" style="min-width:0"><label>購入日</label><input id="h-date" type="date"></div>
+    <div class="field" style="min-width:0"><label>購入先</label><select id="h-shop"><option value="">選択（任意）</option></select></div>
   </div>
   <div id="h-single-qty">
     <div class="frow">
@@ -1435,7 +1435,4 @@ function exportCSV(type){
     db.works.forEach(w=>{
       const cost=(w.materials||[]).reduce((s,m)=>s+(m.cost||0),0);
       const profit=w.sell!=null?w.sell-cost:'';
-      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
-    });
-    const sold=db.works.filter(w=>w.sell!=null);
-  
+      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'
