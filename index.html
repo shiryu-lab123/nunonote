@@ -1283,4 +1283,167 @@ function openHistModal(idx=-1){
 function saveHistory(){
   const name=document.getElementById('h-name').value.trim();
   if(!name){showError('品名を入力してください');return;}
-  const qty=parseFloat(document.getE
+  const qty=parseFloat(document.getElementById('h-qty').value)||0;
+  const price=parseFloat(document.getElementById('h-price').value)||0;
+  const unit=document.getElementById('h-unit').value;
+  const targetVal=document.getElementById('h-target').value;
+  const isNew=targetVal==='new';
+  const isFabric=histType==='fabric';
+  const histItem={name,itemType:histType,photo:hPhoto,date:document.getElementById('h-date').value,shop:document.getElementById('h-shop').value,price,qty,unit,note:document.getElementById('h-note').value,genre:document.getElementById('h-genre').value,material:document.getElementById('h-mat').value,color:selHCol,linkedId:null};
+  const variantMode=document.getElementById('h-variant-rows').style.display!=='none'&&histVariantRows.length>0;
+  if(editIdx.history>=0){
+    const oldH=db.history[editIdx.history];
+    if(oldH.linkedId!=null){
+      const oldArr=oldH.itemType==='fabric'?db.fabrics:db.parts;
+      if(oldArr[oldH.linkedId]){
+        if(oldH.variants?.length&&oldArr[oldH.linkedId].variants){
+          oldH.variants.forEach(hv=>{const pv=oldArr[oldH.linkedId].variants.find(v=>v.size===hv.size);if(pv)pv.remaining=Math.max(0,Math.round(((pv.remaining||0)-(hv.qty||0))*100)/100);});
+        } else {
+          oldArr[oldH.linkedId].bought=Math.max(0,Math.round(((oldArr[oldH.linkedId].bought||0)-(oldH.qty||0))*100)/100);
+          oldArr[oldH.linkedId].remaining=Math.max(0,Math.round(((oldArr[oldH.linkedId].remaining||0)-(oldH.qty||0))*100)/100);
+        }
+      }
+    }
+  }
+  if(isNew){
+    if(editIdx.history===-1&&totalItems()>=10){openM('upgrade');return;}
+    if(isFabric){
+      const newItem={name,photo:hPhoto,genre:histItem.genre,color:selHCol,material:histItem.material,shop:histItem.shop,price,bought:qty,remaining:qty,note:histItem.note};
+      db.fabrics.push(newItem);histItem.linkedId=db.fabrics.length-1;
+    } else if(variantMode){
+      if(histVariantRows.every(v=>!v.size)){showError('サイズ・種類名を入力してください');return;}
+      const newItem={name,photo:hPhoto,genre:histItem.genre,unit,shop:histItem.shop,note:histItem.note,variants:histVariantRows.map(v=>({size:v.size||'',price:v.price||0,remaining:v.qty||0}))};
+      db.parts.push(newItem);histItem.linkedId=db.parts.length-1;
+      histItem.variants=histVariantRows.map(v=>({size:v.size||'',price:v.price||0,qty:v.qty||0}));
+      histItem.qty=histVariantRows.reduce((s,v)=>s+(v.qty||0),0);histItem.price=0;
+    } else {
+      const newItem={name,photo:hPhoto,genre:histItem.genre,unit,shop:histItem.shop,price,bought:qty,remaining:qty,note:histItem.note};
+      db.parts.push(newItem);histItem.linkedId=db.parts.length-1;
+    }
+  } else {
+    const existIdx=parseInt(targetVal.replace('existing_',''));
+    const arr=isFabric?db.fabrics:db.parts;
+    if(arr[existIdx]){
+      if(variantMode&&arr[existIdx].variants){
+        histVariantRows.forEach(vr=>{const pv=arr[existIdx].variants.find(v=>v.size===vr.size);if(pv)pv.remaining=Math.round(((pv.remaining||0)+(vr.qty||0))*100)/100;else if(vr.size)arr[existIdx].variants.push({size:vr.size,price:vr.price||0,remaining:vr.qty||0});});
+        histItem.variants=histVariantRows.map(v=>({size:v.size||'',price:v.price||0,qty:v.qty||0}));
+        histItem.qty=histVariantRows.reduce((s,v)=>s+(v.qty||0),0);histItem.price=0;
+      } else {
+        arr[existIdx].bought=Math.round(((arr[existIdx].bought||0)+qty)*100)/100;
+        arr[existIdx].remaining=Math.round(((arr[existIdx].remaining||0)+qty)*100)/100;
+      }
+      if(hPhoto&&!arr[existIdx].photo)arr[existIdx].photo=hPhoto;
+      histItem.linkedId=existIdx;
+    }
+  }
+  if(editIdx.history>=0){db.history[editIdx.history]=histItem;showToast('購入記録を更新しました');}
+  else{db.history.unshift(histItem);showToast(isNew?'購入を記録して在庫に追加しました':'既存アイテムに在庫を追加しました');}
+  closeM('history');sDB();
+}
+
+// ===== DELETE =====
+function delItem(type,i){
+  if(!confirm('削除してもよいですか？'))return;
+  const k=type==='fabric'?'fabrics':type==='parts'?'parts':type==='works'?'works':'history';
+  db[k].splice(i,1);sDB();showToast('削除しました');
+}
+function delCurrent(type){
+  if(!confirm('削除してもよいですか？'))return;
+  const k=type==='fabric'?'fabrics':type==='parts'?'parts':'history';
+  db[k].splice(editIdx[type],1);
+  closeM(type);sDB();showToast('削除しました');
+}
+
+// ===== EXPORT / IMPORT =====
+function exportData(){
+  const payload={db,ms,exportedAt:new Date().toISOString(),version:1};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const date=new Date().toISOString().slice(0,10).replace(/-/g,'');
+  a.href=url;a.download='nunonote_'+date+'.json';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+  showToast('エクスポートしました');
+}
+function importData(input){
+  const file=input.files[0];if(!file)return;
+  if(!confirm('インポートすると現在のデータはすべて上書きされます。よろしいですか？'))return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const payload=JSON.parse(e.target.result);
+      if(!payload.db||!payload.ms){showError('ファイルの形式が正しくありません');return;}
+      db=payload.db;ms=payload.ms;
+      _lsSave('nn_db4',JSON.stringify(db));
+      _lsSave('nn_ms4',JSON.stringify(ms));
+      renderMS();uFilters();uAll();
+      showToast('インポートが完了しました');
+    }catch(err){
+      showError('ファイルの読み込みに失敗しました');
+    }
+    input.value='';
+  };
+  reader.readAsText(file);
+}
+
+// ===== CSV EXPORT =====
+function csvEscape(v){
+  const s=String(v==null?'':v);
+  return s.includes(',')||s.includes('"')||s.includes('\n')?'"'+s.replace(/"/g,'""')+'"':s;
+}
+function downloadCSV(rows,filename){
+  const bom='﻿';
+  const content=bom+rows.map(r=>r.map(csvEscape).join(',')).join('\r\n');
+  const blob=new Blob([content],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const date=new Date().toISOString().slice(0,10).replace(/-/g,'');
+  a.href=url;a.download=filename+'_'+date+'.csv';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+function exportCSV(type){
+  if(type==='purchases'){
+    if(!db.history.length){showError('購入記録がありません');return;}
+    const rows=[['購入日','品名','種別','ジャンル','単価（円）','数量','単位','小計（円）','購入先']];
+    db.history.forEach(h=>{
+      if(h.variants&&h.variants.length){
+        h.variants.forEach(v=>{
+          const sub=(v.price||0)*(v.qty||0);
+          rows.push([h.date||'',h.name+(v.size?'（'+v.size+'）':''),h.itemType==='parts'?'付属品':'生地',h.genre||'',v.price||0,v.qty||0,h.unit||'',sub,h.shop||'']);
+        });
+      } else {
+        const sub=(h.price||0)*(h.qty||0);
+        rows.push([h.date||'',h.name,h.itemType==='parts'?'付属品':'生地',h.genre||'',h.price||0,h.qty||0,h.unit||'',sub,h.shop||'']);
+      }
+    });
+    const total=rows.slice(1).reduce((s,r)=>s+(parseFloat(r[7])||0),0);
+    rows.push(['','','','','','','合計',total,'']);
+    downloadCSV(rows,'nunonote_購入記録');
+    showToast('購入記録CSVを出力しました');
+  } else {
+    if(!db.works.length){showError('作品記録がありません');return;}
+    const rows=[['制作日','作品名','販売価格（円）','原価（円）','利益（円）','メモ']];
+    db.works.forEach(w=>{
+      const cost=(w.materials||[]).reduce((s,m)=>s+(m.cost||0),0);
+      const profit=w.sell!=null?w.sell-cost:'';
+      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
+    });
+    const sold=db.works.filter(w=>w.sell!=null);
+    const totalSell=sold.reduce((s,w)=>s+w.sell,0);
+    const totalCost=db.works.reduce((s,w)=>s+(w.materials||[]).reduce((ss,m)=>ss+(m.cost||0),0),0);
+    rows.push(['','合計',totalSell,totalCost,totalSell-totalCost,'']);
+    downloadCSV(rows,'nunonote_作品売上');
+    showToast('作品・売上CSVを出力しました');
+  }
+}
+
+// ===== MODAL CLOSE =====
+document.querySelectorAll('.mbg').forEach(bg=>bg.addEventListener('click',e=>{if(e.target===bg)bg.classList.remove('open');}));
+
+// ===== INIT =====
+renderMS();uFilters();uAll();updateAddBtn();
+</script>
+</body>
+</html>
