@@ -157,6 +157,7 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 .field textarea{resize:vertical;min-height:65px;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
 .frow>.field{min-width:0;}
+#h-date{font-size:13px;padding:11px 8px;}
 
 /* photo */
 .photo-up{border:.5px dashed var(--rule);border-radius:var(--rs);padding:13px;text-align:center;cursor:pointer;transition:all .15s;background:var(--surf-deep);position:relative;}
@@ -1437,4 +1438,4 @@ function exportCSV(type){
       rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
     });
     const sold=db.works.filter(w=>w.sell!=null);
-    const totalSell=sold.reduce((s,w)=>s+w.s
+  
