@@ -1435,4 +1435,12 @@ function exportCSV(type){
     db.works.forEach(w=>{
       const cost=(w.materials||[]).reduce((s,m)=>s+(m.cost||0),0);
       const profit=w.sell!=null?w.sell-cost:'';
-      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'
+      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
+    });
+    downloadCSV(rows,'nunonote_作品記録');
+    showToast('作品記録CSVを出力しました');
+  }
+}
+</script>
+</body>
+</html>

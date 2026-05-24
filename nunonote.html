@@ -1437,20 +1437,10 @@ function exportCSV(type){
       const profit=w.sell!=null?w.sell-cost:'';
       rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
     });
-    const sold=db.works.filter(w=>w.sell!=null);
-    const totalSell=sold.reduce((s,w)=>s+w.sell,0);
-    const totalCost=db.works.reduce((s,w)=>s+(w.materials||[]).reduce((ss,m)=>ss+(m.cost||0),0),0);
-    rows.push(['','合計',totalSell,totalCost,totalSell-totalCost,'']);
-    downloadCSV(rows,'nunonote_作品売上');
-    showToast('作品・売上CSVを出力しました');
+    downloadCSV(rows,'nunonote_作品記録');
+    showToast('作品記録CSVを出力しました');
   }
 }
-
-// ===== MODAL CLOSE =====
-document.querySelectorAll('.mbg').forEach(bg=>bg.addEventListener('click',e=>{if(e.target===bg)bg.classList.remove('open');}));
-
-// ===== INIT =====
-renderMS();uFilters();uAll();updateAddBtn();
 </script>
 </body>
 </html>
