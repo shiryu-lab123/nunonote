@@ -208,9 +208,189 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 .copt.sel .copt-circle::after{opacity:1;}
 .copt-label{font-size:10px;color:var(--ink3);white-space:nowrap;transition:color .15s;}
 .copt.sel .copt-label{color:var(--accent-d);font-weight:700;}
+
+/* ===== INTRO OVERLAY ===== */
+#intro-overlay{
+  position:fixed;inset:0;background:var(--bg);z-index:300;
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:opacity .4s;
+}
+#intro-overlay.hidden{opacity:0;pointer-events:none;}
+.intro-viewport{flex:1;overflow:hidden;position:relative;}
+.intro-slider{
+  display:flex;height:100%;
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+}
+.intro-slide{
+  min-width:100%;height:100%;overflow-y:auto;
+  display:flex;flex-direction:column;
+  padding:48px 24px 28px;gap:18px;
+  box-sizing:border-box;
+}
+.intro-slide-center{align-items:center;justify-content:center;text-align:center;}
+.intro-dots{
+  display:flex;justify-content:center;align-items:center;
+  gap:7px;padding:14px 0 22px;flex-shrink:0;
+}
+.intro-dot{height:6px;border-radius:3px;background:var(--ink4);transition:all .3s;}
+.intro-dot.on{background:var(--accent);width:22px;}
+.intro-dot:not(.on){width:6px;}
+.intro-logo-ic{
+  width:70px;height:70px;background:var(--accent);border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+}
+.intro-logo-ic-char{font-size:42px;color:white;font-weight:700;line-height:1;font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',sans-serif;}
+.intro-logo-ic-sub{font-size:9px;color:rgba(255,255,255,0.72);letter-spacing:0.2em;font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',sans-serif;}
+.intro-app-name{font-size:34px;font-weight:700;letter-spacing:0.02em;color:var(--ink);line-height:1.1;}
+.intro-app-sub{font-size:13px;color:var(--ink3);margin-top:6px;letter-spacing:0.05em;}
+.intro-catch{
+  font-size:15px;line-height:1.9;color:var(--ink2);
+  background:var(--surf);border:.5px solid var(--rule);
+  border-radius:var(--r);padding:16px 18px;width:100%;
+}
+.intro-sec-label{font-size:13px;font-weight:600;color:var(--ink3);letter-spacing:0.06em;}
+.intro-feat{
+  background:var(--surf);border:.5px solid var(--rule);
+  border-radius:var(--r);padding:13px 15px;
+  display:flex;align-items:center;gap:13px;
+}
+.intro-feat-ic{
+  width:36px;height:36px;border-radius:var(--rs);
+  background:var(--accent-l);display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;
+}
+.intro-feat-ic svg{width:17px;height:17px;stroke:var(--accent-d);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.intro-feat-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.intro-feat-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
+.intro-hint-card{
+  background:var(--accent-l);border:.5px solid var(--accent-mid);
+  border-radius:var(--r);padding:18px 16px;
+  display:flex;gap:13px;align-items:flex-start;width:100%;
+}
+.intro-hint-card svg{flex-shrink:0;margin-top:1px;}
+.intro-hint-title{font-size:15px;font-weight:700;color:var(--accent-d);margin-bottom:8px;}
+.intro-hint-body{font-size:13.5px;color:var(--accent-d);line-height:1.8;}
+.intro-settings-card{
+  background:var(--surf);border:.5px solid var(--rule);
+  border-radius:var(--r);padding:14px 16px;width:100%;
+}
+.intro-settings-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.intro-settings-head svg{stroke:var(--ink2);flex-shrink:0;}
+.intro-settings-title{font-size:14px;font-weight:600;color:var(--ink);}
+.intro-settings-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2);padding:5px 0;border-bottom:.5px solid var(--rule);}
+.intro-settings-item:last-child{border-bottom:none;padding-bottom:0;}
+.intro-settings-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.intro-note{
+  background:var(--surf-tint);border-radius:var(--rs);
+  padding:12px 15px;font-size:13px;color:var(--ink3);
+  line-height:1.75;border:.5px solid var(--rule);width:100%;
+}
+.intro-btn{
+  width:100%;padding:16px;background:var(--ink);color:var(--surf);
+  border:none;border-radius:var(--rs);font-size:15px;font-weight:700;
+  cursor:pointer;font-family:inherit;letter-spacing:0.04em;
+  transition:opacity .15s;margin-top:auto;flex-shrink:0;
+}
+.intro-btn:active{opacity:.82;}
+.intro-hint-label{
+  font-size:12px;color:var(--ink3);text-align:center;margin-top:6px;
+}
 </style>
 </head>
 <body>
+
+<!-- ===== イントロ画面（スライド形式） ===== -->
+<div id="intro-overlay">
+  <div class="intro-viewport">
+    <div class="intro-slider" id="introSlider">
+
+      <!-- スライド1：ウェルカム -->
+      <div class="intro-slide intro-slide-center">
+        <div class="intro-logo-ic">
+          <span class="intro-logo-ic-char">ぬ</span>
+          <span class="intro-logo-ic-sub">のーと</span>
+        </div>
+        <div>
+          <div class="intro-app-name">ぬのーと</div>
+          <div class="intro-app-sub">布と作品の記録アプリ</div>
+        </div>
+        <div class="intro-catch">
+          手持ちの生地・付属品をかんたん管理。<br>
+          作品の原価・利益まで一目でわかります。
+        </div>
+        <button class="intro-btn" onclick="introGoTo(1)">次へ →</button>
+        <div class="intro-hint-label">スワイプでも切り替えられます</div>
+      </div>
+
+      <!-- スライド2：できること -->
+      <div class="intro-slide">
+        <div class="intro-sec-label">できること</div>
+        <div class="intro-feat">
+          <div class="intro-feat-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+          <div><div class="intro-feat-name">生地の在庫管理</div><div class="intro-feat-desc">残量・単価・写真を記録。残り少なくなったら自動お知らせ。</div></div>
+        </div>
+        <div class="intro-feat">
+          <div class="intro-feat-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="10.5" cy="10.5" r="0.9" fill="var(--accent-d)" stroke="none"/><circle cx="13.5" cy="10.5" r="0.9" fill="var(--accent-d)" stroke="none"/><circle cx="10.5" cy="13.5" r="0.9" fill="var(--accent-d)" stroke="none"/><circle cx="13.5" cy="13.5" r="0.9" fill="var(--accent-d)" stroke="none"/></svg></div>
+          <div><div class="intro-feat-name">付属品の在庫管理</div><div class="intro-feat-desc">ボタン・ファスナー等をサイズ別に管理。補充リストも自動作成。</div></div>
+        </div>
+        <div class="intro-feat">
+          <div class="intro-feat-ic"><svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.86H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.86l.58-3.57a2 2 0 00-1.34-2.23z"/></svg></div>
+          <div><div class="intro-feat-name">作品の記録・原価計算</div><div class="intro-feat-desc">使った材料を入力するだけで原価・利益を自動計算。</div></div>
+        </div>
+        <div class="intro-feat">
+          <div class="intro-feat-ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="intro-feat-name">購入記録・月次まとめ</div><div class="intro-feat-desc">確定申告用CSV書き出し。今月の収支をひと目で確認。</div></div>
+        </div>
+        <button class="intro-btn" onclick="introGoTo(2)">次へ →</button>
+      </div>
+
+      <!-- スライド3：はじめる前のひとてま -->
+      <div class="intro-slide">
+        <div class="intro-hint-card">
+          <svg viewBox="0 0 24 24" width="22" height="22" style="stroke:var(--accent-d);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div>
+            <div class="intro-hint-title">はじめる前のひとてま</div>
+            <div class="intro-hint-body">まず「設定」画面からジャンルや購入先を登録しておくと、生地・付属品の入力がぐっとスムーズになります。</div>
+          </div>
+        </div>
+        <div class="intro-settings-card">
+          <div class="intro-settings-head">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            <div class="intro-settings-title">「設定」で登録できるもの</div>
+          </div>
+          <div class="intro-settings-item"><span class="intro-settings-dot"></span>生地ジャンル（布帛・ニット・レースなど）</div>
+          <div class="intro-settings-item"><span class="intro-settings-dot"></span>付属品ジャンル（ボタン・ファスナーなど）</div>
+          <div class="intro-settings-item"><span class="intro-settings-dot"></span>購入先（ショップ名など）</div>
+        </div>
+        <button class="intro-btn" onclick="introGoTo(3)">次へ →</button>
+      </div>
+
+      <!-- スライド4：スタート -->
+      <div class="intro-slide intro-slide-center">
+        <div class="intro-logo-ic">
+          <span class="intro-logo-ic-char">ぬ</span>
+          <span class="intro-logo-ic-sub">のーと</span>
+        </div>
+        <div style="font-size:22px;font-weight:700;color:var(--ink);line-height:1.4;">さあ、はじめましょう</div>
+        <div class="intro-note">
+          💾 データはこのブラウザに保存されます。<br>
+          機種変更の前に「設定」タブからエクスポートをお忘れなく。
+        </div>
+        <button class="intro-btn" onclick="startApp()">さっそく使ってみる →</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- ドット -->
+  <div class="intro-dots" id="introDots">
+    <div class="intro-dot on" id="idot0"></div>
+    <div class="intro-dot" id="idot1"></div>
+    <div class="intro-dot" id="idot2"></div>
+    <div class="intro-dot" id="idot3"></div>
+  </div>
+</div>
+<!-- ===== / イントロ画面 ===== -->
+
 <div class="shell">
   <div class="topbar">
     <div class="logo">
@@ -555,6 +735,50 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 
 <div class="toast" id="toast"></div>
 <script>
+// ===== INTRO =====
+(function(){
+  let done=false;
+  try{done=localStorage.getItem('nn_intro_done')==='1';}catch(e){}
+  if(done){
+    const ov=document.getElementById('intro-overlay');
+    if(ov)ov.style.display='none';
+  }
+})();
+
+let _iCur=0;
+const _iTotal=4;
+
+function introGoTo(n){
+  _iCur=Math.max(0,Math.min(_iTotal-1,n));
+  const sl=document.getElementById('introSlider');
+  if(sl)sl.style.transform='translateX(-'+(_iCur*100)+'%)';
+  for(let i=0;i<_iTotal;i++){
+    const d=document.getElementById('idot'+i);
+    if(d){d.className='intro-dot'+(i===_iCur?' on':'');}
+  }
+}
+
+function startApp(){
+  try{localStorage.setItem('nn_intro_done','1');}catch(e){}
+  const ov=document.getElementById('intro-overlay');
+  if(!ov)return;
+  ov.classList.add('hidden');
+  setTimeout(()=>{ov.style.display='none';},420);
+}
+
+(function(){
+  const vp=document.getElementById('introSlider');
+  if(!vp)return;
+  let tx=0,ty=0;
+  vp.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  vp.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    const dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40)introGoTo(_iCur+(dx<0?1:-1));
+  },{passive:true});
+})();
+// ===== / INTRO =====
+
 // ===== DATA =====
 const COLORS=[
   {n:'白',h:'#FFFFFF'},{n:'灰',h:'#9E9E9E'},{n:'黒',h:'#212121'},
