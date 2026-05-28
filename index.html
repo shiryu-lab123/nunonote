@@ -1442,6 +1442,13 @@ function exportCSV(type){
     showToast('作品記録CSVを出力しました');
   }
 }
+
+// ===== 初期化 =====
+document.addEventListener('DOMContentLoaded', function(){
+  renderMS();
+  uFilters();
+  uAll();
+});
 </script>
 </body>
 </html>                                                                                                                         
