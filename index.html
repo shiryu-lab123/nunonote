@@ -42,14 +42,6 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 .icon-btn:hover{background:var(--surf-deep);}
 .icon-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
 
-/* freebar */
-.freebar{margin:8px 14px 0;background:var(--accent-l);border-radius:var(--rs);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;}
-.freebar-txt{font-size:13px;color:var(--accent-d);}
-.freebar-txt strong{font-weight:700;}
-.dots{display:flex;gap:3px;}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--rule-m);transition:background .3s;}
-.dot.used{background:var(--accent);}.dot.danger{background:var(--warn);}
-
 /* bottom nav */
 .nav{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;width:calc(100% - 24px);max-width:456px;background:var(--surf);border-radius:24px;border:.5px solid var(--rule);box-shadow:0 8px 24px rgba(38,34,28,0.10),0 2px 6px rgba(38,34,28,0.06);padding:10px 8px;display:flex;justify-content:space-around;align-items:center;z-index:50;}
 .nbtn{background:transparent;border:none;padding:8px 12px;border-radius:16px;color:var(--ink3);display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-family:inherit;cursor:pointer;min-width:0;font-weight:500;transition:all .15s;}
@@ -143,12 +135,6 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 .addbtn{width:100%;padding:14px;border:.5px dashed var(--rule);border-radius:var(--r);background:transparent;color:var(--ink3);font-size:14.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:4px;font-family:inherit;transition:all .15s;}
 .addbtn:hover{background:var(--accent-l);color:var(--accent-d);border-color:var(--accent);}
 
-/* upgrade */
-.upcard{border:.5px solid var(--rule);border-radius:var(--r);padding:20px;text-align:center;margin-top:8px;background:var(--surf);}
-.uptitle{font-size:17px;font-weight:700;margin-bottom:6px;color:var(--ink);}
-.updesc{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:16px;}
-.upbtn{display:inline-block;padding:11px 28px;background:var(--ink);color:var(--surf);border-radius:var(--rs);font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:inherit;}
-
 /* modal / bottom sheet */
 .mbg{display:none;position:fixed;inset:0;background:rgba(58,53,48,0.4);backdrop-filter:blur(2px);z-index:100;align-items:flex-end;justify-content:center;}
 .mbg.open{display:flex;}
@@ -191,23 +177,22 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
 /* toast */
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--surf);padding:11px 22px;border-radius:100px;font-size:13.5px;font-weight:500;letter-spacing:0.02em;opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap;box-shadow:0 6px 18px rgba(58,53,48,0.2);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.undo{pointer-events:auto;}
+.undo-btn{background:none;border:none;color:#F0C892;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0;margin-left:10px;}
+
+/* backup reminder */
+.backup-bar{display:none;margin:8px 14px 0;background:var(--warn-soft);border:.5px solid rgba(178,58,46,0.18);border-radius:var(--rs);padding:9px 12px;align-items:center;justify-content:space-between;gap:8px;}
+.backup-bar.on{display:flex;}
+.backup-txt{font-size:12.5px;color:var(--warn);line-height:1.5;}
+.backup-act{display:flex;gap:6px;flex-shrink:0;align-items:center;}
+.backup-save{padding:6px 12px;background:var(--warn);color:#fff;border:none;border-radius:100px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;}
+.backup-close{background:none;border:none;color:var(--warn);font-size:17px;cursor:pointer;padding:2px 4px;line-height:1;opacity:.7;}
 
 .empty{text-align:center;padding:48px 24px;color:var(--ink3);font-size:14px;line-height:1.8;}
 .empty-ic{margin-bottom:12px;display:flex;justify-content:center;}
 
 /* history linked badge */
 .linked-badge{font-size:12.5px;padding:2px 7px;border-radius:100px;background:var(--ok-soft);color:var(--ok);display:inline-flex;align-items:center;gap:3px;font-weight:500;}
-
-/* color grid */
-.cgrid{display:flex;gap:10px;flex-wrap:wrap;}
-.copt{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:transform .15s;}
-.copt:hover{transform:scale(1.1);}
-.copt-circle{width:34px;height:34px;border-radius:50%;position:relative;border:3px solid transparent;transition:border-color .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;}
-.copt.sel .copt-circle{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent);}
-.copt-circle::after{content:'✓';position:absolute;font-size:14px;font-weight:700;color:#fff;opacity:0;transition:opacity .15s;text-shadow:0 1px 4px rgba(0,0,0,.7);}
-.copt.sel .copt-circle::after{opacity:1;}
-.copt-label{font-size:10px;color:var(--ink3);white-space:nowrap;transition:color .15s;}
-.copt.sel .copt-label{color:var(--accent-d);font-weight:700;}
 
 /* ===== INTRO OVERLAY ===== */
 #intro-overlay{
@@ -405,9 +390,12 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
       <button class="icon-btn" onclick="showTab('settings',null)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></button>
     </div>
   </div>
-  <div class="freebar" id="freeBar" style="display:none">
-    <div class="freebar-txt">登録数 <strong id="usedCount">0</strong> / 10件（無料枠）</div>
-    <div class="dots" id="freeDots"></div>
+  <div class="backup-bar" id="backupBar">
+    <span class="backup-txt">最後のバックアップから30日以上経っています。データを保存しておきましょう</span>
+    <span class="backup-act">
+      <button class="backup-save" onclick="exportData()">今すぐ保存</button>
+      <button class="backup-close" onclick="snoozeBackup()" title="1週間後に再表示">×</button>
+    </span>
   </div>
   <div class="nav">
     <button class="nbtn active" id="nav-fabric" onclick="showTab('fabric',this)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>生地</button>
@@ -476,11 +464,6 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
         </div>
       </div>
       <div id="lowSection"></div>
-      <div class="upcard" id="upSection" style="display:none">
-        <div class="uptitle">有料プランにアップグレード</div>
-        <div class="updesc">登録数が上限に近づいています。<br>月額プランで登録無制限＋便利機能が使えます。</div>
-        <button class="upbtn" onclick="openM('upgrade')">プランを見る</button>
-      </div>
     </div>
     <!-- 設定 -->
     <div id="tab-settings" class="sec">
@@ -543,7 +526,7 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
       <input type="file" accept="image/*" onchange="prevPhoto(this,'f-prev',d=>{fPhoto=d;toggleClear('f-photo-wrap',true)})">
       <div class="photo-txt" id="f-photo-txt"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:5px"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>タップして写真を選ぶ</div>
       <img id="f-prev" class="photo-prev">
-      <button class="photo-clear" id="f-photo-clear" onclick="clearPhoto('f-prev','f-photo-clear',()=>{fPhoto=null})">×</button>
+      <button class="photo-clear" id="f-photo-clear" onclick="clearPhoto(event,'f-prev','f-photo-clear',()=>{fPhoto=null})">×</button>
     </div>
   </div>
   <div class="field"><label>ジャンル</label><select id="f-genre"><option value="">選択（任意）</option></select></div>
@@ -582,7 +565,7 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
       <input type="file" accept="image/*" onchange="prevPhoto(this,'p-prev',d=>{pPhoto=d;toggleClear('p-photo-wrap',true)})">
       <div class="photo-txt"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:5px"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>タップして写真を選ぶ</div>
       <img id="p-prev" class="photo-prev">
-      <button class="photo-clear" id="p-photo-clear" onclick="clearPhoto('p-prev','p-photo-clear',()=>{pPhoto=null})">×</button>
+      <button class="photo-clear" id="p-photo-clear" onclick="clearPhoto(event,'p-prev','p-photo-clear',()=>{pPhoto=null})">×</button>
     </div>
   </div>
   <div class="field"><label>ジャンル</label><select id="p-genre"><option value="">選択（任意）</option></select></div>
@@ -629,7 +612,7 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
       <input type="file" accept="image/*" onchange="prevPhoto(this,'w-prev1',d=>{w1Photo=d;toggleClear('w1-photo-wrap',true)})">
       <div class="photo-txt"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:5px"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>タップして写真を選ぶ</div>
       <img id="w-prev1" class="photo-prev">
-      <button class="photo-clear" id="w1-photo-clear" onclick="clearPhoto('w-prev1','w1-photo-clear',()=>{w1Photo=null})">×</button>
+      <button class="photo-clear" id="w1-photo-clear" onclick="clearPhoto(event,'w-prev1','w1-photo-clear',()=>{w1Photo=null})">×</button>
     </div>
   </div>
   <div class="field"><label>写真② サブ（部分・裏地など）</label>
@@ -637,13 +620,14 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
       <input type="file" accept="image/*" onchange="prevPhoto(this,'w-prev2',d=>{w2Photo=d;toggleClear('w2-photo-wrap',true)})">
       <div class="photo-txt"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:5px"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>タップして写真を選ぶ</div>
       <img id="w-prev2" class="photo-prev">
-      <button class="photo-clear" id="w2-photo-clear" onclick="clearPhoto('w-prev2','w2-photo-clear',()=>{w2Photo=null})">×</button>
+      <button class="photo-clear" id="w2-photo-clear" onclick="clearPhoto(event,'w-prev2','w2-photo-clear',()=>{w2Photo=null})">×</button>
     </div>
   </div>
   <div class="frow">
     <div class="field"><label>制作日</label><input id="w-date" type="date"></div>
     <div class="field"><label>販売価格（円）</label><input id="w-sell" type="number" min="0" placeholder="4800"></div>
   </div>
+  <div class="field"><label>販売手数料・送料（円）<span style="font-weight:400;color:var(--t3);font-size:12px">利益から差し引かれます</span></label><input id="w-fee" type="number" min="0" placeholder="例：480（販売サイトの手数料＋送料）"></div>
   <div class="field">
     <label>使用した生地・付属品</label>
     <div id="w-mats"></div>
@@ -695,7 +679,7 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
       <input type="file" accept="image/*" onchange="prevPhoto(this,'h-prev',d=>{hPhoto=d;toggleClear('h-photo-wrap',true)})">
       <div class="photo-txt"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;margin-right:5px"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>タップして写真を選ぶ</div>
       <img id="h-prev" class="photo-prev">
-      <button class="photo-clear" id="h-photo-clear" onclick="clearPhoto('h-prev','h-photo-clear',()=>{hPhoto=null})">×</button>
+      <button class="photo-clear" id="h-photo-clear" onclick="clearPhoto(event,'h-prev','h-photo-clear',()=>{hPhoto=null})">×</button>
     </div>
   </div>
 
@@ -716,20 +700,6 @@ body{font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,
   </div>
 
   <button class="sbtn" id="h-save-btn" onclick="saveHistory()">購入を記録して在庫に追加</button>
-</div>
-</div>
-
-<!-- ===== アップグレードモーダル ===== -->
-<div class="mbg" id="modal-upgrade">
-<div class="modal">
-  <span class="modal-handle"></span>
-  <div class="mtitle">プランを選ぶ <button class="mclose" onclick="closeM('upgrade')">×</button></div>
-  <div style="display:grid;gap:10px;margin-bottom:8px">
-    <div style="border:.5px solid var(--bdr-m);border-radius:var(--r);padding:14px"><div style="font-size:14px;color:var(--t3);margin-bottom:4px">無料</div><div style="font-size:20px;font-weight:700;margin-bottom:6px">¥0<span style="font-size:13px;font-weight:400;color:var(--t3)">/月</span></div><div style="font-size:13px;color:var(--t2);line-height:1.7">生地＋付属品10件まで登録<br>基本の在庫・作品管理</div></div>
-    <div style="border:.5px solid var(--bdr-m);border-radius:var(--r);padding:14px"><div style="font-size:14px;color:var(--t3);margin-bottom:4px">ベーシック</div><div style="font-size:20px;font-weight:700;margin-bottom:6px">¥480<span style="font-size:13px;font-weight:400;color:var(--t3)">/月</span></div><div style="font-size:13px;color:var(--t2);line-height:1.7">登録数無制限<br>写真ギャラリー・補充リスト書き出し<br>複数端末で同期</div></div>
-    <div style="border:2px solid var(--accent);border-radius:var(--r);padding:14px;position:relative"><div style="position:absolute;top:-10px;left:14px;font-size:12px;background:var(--accent);color:#2E2C29;padding:2px 10px;border-radius:100px;font-weight:500">おすすめ</div><div style="font-size:14px;color:var(--t3);margin-bottom:4px">プレミアム</div><div style="font-size:20px;font-weight:700;margin-bottom:6px">¥980<span style="font-size:13px;font-weight:400;color:var(--t3)">/月</span></div><div style="font-size:13px;color:var(--t2);line-height:1.7">ベーシックの全機能＋<br>原価・利益・時給計算<br>月別売上グラフ<br>CSV書き出し（確定申告用）<br>商品説明文のAI下書き</div></div>
-  </div>
-  <div style="font-size:12px;color:var(--t3);text-align:center;margin-top:8px">※ このデモ版では課金機能は動作しません</div>
 </div>
 </div>
 
@@ -780,19 +750,99 @@ function startApp(){
 // ===== / INTRO =====
 
 // ===== DATA =====
-const COLORS=[
-  {n:'白',h:'#FFFFFF'},{n:'灰',h:'#9E9E9E'},{n:'黒',h:'#212121'},
-  {n:'赤',h:'#E53935'},{n:'橙',h:'#FB8C00'},{n:'黄',h:'#FDD835'},
-  {n:'黄緑',h:'#C0CA33'},{n:'緑',h:'#43A047'},{n:'青緑',h:'#00ACC1'},
-  {n:'青',h:'#1E88E5'},{n:'青紫',h:'#5E35B1'},{n:'紫',h:'#8E24AA'}
-];
-
 function _ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
-function _lsSave(k,v){try{localStorage.setItem(k,v);}catch(e){}}
-let db=JSON.parse(_ls('nn_db4')||'null')||{fabrics:[],parts:[],works:[],history:[]};
-let ms=JSON.parse(_ls('nn_ms4')||'null')||{fabricGenre:['布帛','ニット','レース'],partsGenre:['ボタン','ファスナー','芯地','テープ類'],material:['綿100%','麻100%','リネン混','ポリエステル','シルク','ウール'],shop:[]};
+function _lsSave(k,v){try{localStorage.setItem(k,v);return true;}catch(e){return false;}}
 
-let selHCol=COLORS[0].h;
+// ===== STORAGE（IndexedDB） =====
+// localStorage（約5MB）では写真数十枚で上限に達するため、容量の大きいIndexedDBに保存する。
+// 旧localStorageのデータは初回起動時に自動移行する（元データはバックアップとして残す）。
+const IDB_NAME='nunonote',IDB_STORE='kv';
+let _idb=null;
+function idbDB(){
+  if(_idb)return Promise.resolve(_idb);
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open(IDB_NAME,1);
+    req.onupgradeneeded=()=>{req.result.createObjectStore(IDB_STORE);};
+    req.onsuccess=()=>{_idb=req.result;res(_idb);};
+    req.onerror=()=>rej(req.error);
+  });
+}
+function idbGet(key){
+  return idbDB().then(d=>new Promise((res,rej)=>{
+    const rq=d.transaction(IDB_STORE,'readonly').objectStore(IDB_STORE).get(key);
+    rq.onsuccess=()=>res(rq.result);
+    rq.onerror=()=>rej(rq.error);
+  }));
+}
+function idbSet(key,val){
+  return idbDB().then(d=>new Promise((res,rej)=>{
+    const rq=d.transaction(IDB_STORE,'readwrite').objectStore(IDB_STORE).put(val,key);
+    rq.onsuccess=()=>res();
+    rq.onerror=()=>rej(rq.error);
+  }));
+}
+
+let db={fabrics:[],parts:[],works:[],history:[]};
+let ms={fabricGenre:['布帛','ニット','レース'],partsGenre:['ボタン','ファスナー','芯地','テープ類'],material:['綿100%','麻100%','リネン混','ポリエステル','シルク','ウール'],shop:[]};
+// バックアップリマインド用：最終エクスポート日時・最終データ更新日時を記録
+let meta={lastExportAt:0,lastChangeAt:0,firstDataAt:0,snoozeUntil:0};
+
+async function loadData(){
+  try{
+    let d=await idbGet('db');
+    let m=await idbGet('ms');
+    const mt=await idbGet('meta');
+    if(mt)meta=Object.assign(meta,mt);
+    if(!d&&!m){
+      // 初回のみ：旧localStorageデータをIndexedDBへ自動移行
+      const ld=_ls('nn_db4'),lm=_ls('nn_ms4');
+      if(ld||lm){
+        d=JSON.parse(ld||'null');
+        m=JSON.parse(lm||'null');
+        if(d)await idbSet('db',d);
+        if(m)await idbSet('ms',m);
+      }
+    }
+    if(d)db=d;
+    if(m)ms=m;
+  }catch(e){
+    // IndexedDBが使えない環境（一部のプライベートブラウズ等）はlocalStorageにフォールバック
+    db=JSON.parse(_ls('nn_db4')||'null')||db;
+    ms=JSON.parse(_ls('nn_ms4')||'null')||ms;
+    meta=Object.assign(meta,JSON.parse(_ls('nn_meta')||'null')||{});
+  }
+  if(migrateDB())persist('db',db);
+  const hasData=db.fabrics.length+db.parts.length+db.works.length+db.history.length>0;
+  if(hasData&&!meta.firstDataAt){meta.firstDataAt=Date.now();persist('meta',meta);}
+  // ブラウザにデータの永続保持を依頼（端末の容量逼迫時に自動削除されにくくする）
+  if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+}
+const LS_KEYS={db:'nn_db4',ms:'nn_ms4',meta:'nn_meta'};
+function persist(key,val){
+  idbSet(key,val).catch(()=>{
+    if(!_lsSave(LS_KEYS[key],JSON.stringify(val)))showError(SAVE_ERR);
+  });
+}
+
+// HTMLエスケープ（innerHTMLにユーザー入力を埋め込む箇所で必ず使う）
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+// 各アイテムの一意ID。購入記録のlinkedIdはこのIDを指す（配列インデックスは削除でずれるため不可）
+function _uid(){return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);}
+function migrateDB(){
+  let ch=false;
+  db.fabrics.forEach(f=>{if(!f.id){f.id=_uid();ch=true;}});
+  db.parts.forEach(p=>{if(!p.id){p.id=_uid();ch=true;}});
+  db.history.forEach(h=>{
+    if(typeof h.linkedId==='number'){
+      const arr=h.itemType==='parts'?db.parts:db.fabrics;
+      h.linkedId=arr[h.linkedId]?arr[h.linkedId].id:null;ch=true;
+    }
+  });
+  return ch;
+}
+function findLinked(itemType,id){const arr=itemType==='parts'?db.parts:db.fabrics;return arr.find(x=>x.id===id)||null;}
+
 let fPhoto=null,pPhoto=null,w1Photo=null,w2Photo=null,hPhoto=null;
 let matRows=[];
 let variantRows=[];
@@ -801,20 +851,47 @@ let fFilter='all',pFilter='all';
 let editIdx={fabric:-1,parts:-1,works:-1,history:-1};
 let histType='fabric';
 
-function sDB(){_lsSave('nn_db4',JSON.stringify(db));uAll();}
-function sMS(){_lsSave('nn_ms4',JSON.stringify(ms));renderMS();uFilters();}
-function totalItems(){return db.fabrics.length+db.parts.length;}
+const SAVE_ERR='保存に失敗しました。端末の保存容量が不足している可能性があります（写真の枚数を減らすか、不要なデータを削除してください）';
+function sDB(){
+  const now=Date.now();
+  meta.lastChangeAt=now;
+  if(!meta.firstDataAt)meta.firstDataAt=now;
+  persist('meta',meta);
+  persist('db',db);
+  uAll();
+}
+function sMS(){persist('ms',ms);renderMS();uFilters();}
+
+// ===== バックアップリマインド =====
+function uBackupBar(){
+  const bar=document.getElementById('backupBar');
+  if(!bar)return;
+  const D30=30*24*60*60*1000;
+  const now=Date.now();
+  const hasData=db.fabrics.length+db.parts.length+db.works.length+db.history.length>0;
+  const base=meta.lastExportAt||meta.firstDataAt;
+  const need=hasData&&meta.lastChangeAt>meta.lastExportAt&&base>0&&(now-base>D30)&&now>(meta.snoozeUntil||0);
+  bar.classList.toggle('on',need);
+}
+function snoozeBackup(){
+  meta.snoozeUntil=Date.now()+7*24*60*60*1000;
+  persist('meta',meta);
+  uBackupBar();
+}
 
 // ===== TOAST =====
+let _toastTimer=null;
 function showToast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.style.background='';t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2200);
+  t.textContent=msg;t.style.background='';t.classList.remove('undo');t.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
 }
 function showError(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.style.background='var(--red)';t.classList.add('show');
-  setTimeout(()=>{t.classList.remove('show');t.style.background='';},2500);
+  t.textContent=msg;t.style.background='var(--red)';t.classList.remove('undo');t.classList.add('show');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>{t.classList.remove('show');t.style.background='';},2500);
 }
 
 // ===== PHOTO =====
@@ -838,8 +915,8 @@ function prevPhoto(input,prevId,cb){
   };
   reader.readAsDataURL(file);
 }
-function clearPhoto(prevId,clearBtnId,cb){
-  event.stopPropagation();
+function clearPhoto(ev,prevId,clearBtnId,cb){
+  ev.stopPropagation();
   const prev=document.getElementById(prevId);
   prev.src='';prev.style.display='none';
   const clearBtn=document.getElementById(clearBtnId);
@@ -864,17 +941,6 @@ function setPhotoPreview(prevId,clearBtnId,data){
   }
 }
 
-// ===== COLOR GRID (購入履歴用のみ) =====
-function buildCGrid(gridId,selCol,onSelectFn){
-  document.getElementById(gridId).innerHTML=COLORS.map(c=>
-    `<div class="copt${c.h===selCol?' sel':''}" onclick="${onSelectFn.name}('${c.h}',this)">
-      <div class="copt-circle" style="background:${c.h};${c.h==='#FFFFFF'?'border:.5px solid var(--bdr-m);':''}"></div>
-      <div class="copt-label">${c.n}</div>
-    </div>`
-  ).join('');
-}
-function selHColor(h,el){selHCol=h;document.querySelectorAll('#h-cgrid .copt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');}
-
 // ===== STOCK ADJ =====
 function adjStock(id,delta){
   const inp=document.getElementById(id);
@@ -886,7 +952,7 @@ function adjStock(id,delta){
 function renderMS(){
   ['fabricGenre','partsGenre','material','shop'].forEach(k=>{
     document.getElementById('ml-'+k).innerHTML=(ms[k]||[]).map((v,i)=>
-      `<div class="mchip">${v}<button onclick="delMaster('${k}',${i})">×</button></div>`
+      `<div class="mchip">${esc(v)}<button onclick="delMaster('${k}',${i})">×</button></div>`
     ).join('');
   });
 }
@@ -900,28 +966,21 @@ function fillSel(id,key,cur=''){
 }
 function fillDatalist(inputId,listId,key,cur=''){
   const dl=document.getElementById(listId);if(!dl)return;
-  dl.innerHTML=(ms[key]||[]).map(v=>`<option value="${v}">`).join('');
+  dl.innerHTML=(ms[key]||[]).map(v=>`<option value="${esc(v)}">`).join('');
   const inp=document.getElementById(inputId);if(inp)inp.value=cur;
 }
 
 // ===== FILTERS =====
 function uFilters(){
   document.getElementById('fabricFilters').innerHTML=['all',...(ms.fabricGenre||[])].map(g=>
-    `<button class="fchip${g===fFilter?' active':''}" onclick="setFF('${g}')">${g==='all'?'すべて':g}</button>`
+    `<button class="fchip${g===fFilter?' active':''}" data-g="${esc(g)}" onclick="setFF(this.dataset.g)">${g==='all'?'すべて':esc(g)}</button>`
   ).join('');
   document.getElementById('partsFilters').innerHTML=['all',...(ms.partsGenre||[])].map(g=>
-    `<button class="fchip${g===pFilter?' active':''}" onclick="setPF('${g}')">${g==='all'?'すべて':g}</button>`
+    `<button class="fchip${g===pFilter?' active':''}" data-g="${esc(g)}" onclick="setPF(this.dataset.g)">${g==='all'?'すべて':esc(g)}</button>`
   ).join('');
 }
 function setFF(g){fFilter=g;uFilters();renderFabrics();}
 function setPF(g){pFilter=g;uFilters();renderParts();}
-
-// ===== FREEBAR =====
-function uFreebar(){
-  // 無料枠廃止のため、バーは常に非表示
-  document.getElementById('freeBar').style.display='none';
-  document.getElementById('upSection').style.display='none';
-}
 
 // ===== RENDER FABRICS =====
 function renderFabrics(){
@@ -931,18 +990,18 @@ function renderFabrics(){
   if(!items.length){list.innerHTML=`<div class="empty"><div class="empty-ic">${svgIco('fabric',32,'stroke:var(--ink4)')}</div>${db.fabrics.length?'該当する生地がありません':'生地がまだ登録されていません'}</div>`;return;}
   const cards=items.map(f=>{
     const i=db.fabrics.indexOf(f);
-    const pct=Math.min(100,f.bought>0?Math.round(f.remaining/f.bought*100):100);
-    const low=pct<=25;
-    const tags=(f.note||'').split(/[,、]/).filter(Boolean).map(t=>`<span class="tag">${t.trim()}</span>`).join('');
-    const thumbContent=f.photo?`<img src="${f.photo}" alt="">`:'';
+    const pct=f.bought>0?Math.min(100,Math.round(f.remaining/f.bought*100)):(f.remaining>0?100:0);
+    const low=f.bought>0?pct<=25:!(f.remaining>0);
+    const tags=(f.note||'').split(/[,、]/).filter(Boolean).map(t=>`<span class="tag">${esc(t.trim())}</span>`).join('');
+    const thumbContent=f.photo?`<img src="${esc(f.photo)}" alt="">`:'';
     const thumbStyle=!f.photo?`background:var(--surf-deep)`:'';
-    const meta=[f.material,f.shop,f.price?'¥'+f.price.toLocaleString()+'/m':'',f.width?f.width+'cm幅':''].filter(Boolean).join(' · ');
+    const meta=[esc(f.material),esc(f.shop),f.price?'¥'+f.price.toLocaleString()+'/m':'',f.width?f.width+'cm幅':''].filter(Boolean).join(' · ');
     return `<div class="card p-card" onclick="openFabricModal(${i})">
       <div class="p-thumb-sq" style="${thumbStyle}">${thumbContent}</div>
       <div class="p-card-body">
-        <div class="p-name">${f.name}</div>
+        <div class="p-name">${esc(f.name)}</div>
         ${meta?`<div style="font-size:11px;color:var(--t3);margin-bottom:5px">${meta}</div>`:''}
-        ${f.genre||tags?`<div class="tags" style="margin-bottom:6px">${f.genre?`<span class="tag genre">${f.genre}</span>`:''}${tags}${low?'<span class="tag low">残り少</span>':''}</div>`:''}
+        ${f.genre||tags||low?`<div class="tags" style="margin-bottom:6px">${f.genre?`<span class="tag genre">${esc(f.genre)}</span>`:''}${tags}${low?'<span class="tag low">残り少</span>':''}</div>`:''}
         <div class="bar-bg" style="margin:0 0 4px"><div class="bar${low?' low':''}" style="width:${pct}%"></div></div>
         <div class="p-stock">
           <span style="color:var(--t3)">残量</span>
@@ -962,36 +1021,36 @@ function renderParts(){
   if(!items.length){list.innerHTML=`<div class="empty"><div class="empty-ic">${svgIco('parts',32,'stroke:var(--ink4)')}</div>${db.parts.length?'該当する付属品がありません':'付属品がまだ登録されていません'}</div>`;return;}
   const cards=items.map(p=>{
     const i=db.parts.indexOf(p);
-    const tags=(p.note||'').split(/[,、]/).filter(Boolean).map(t=>`<span class="tag">${t.trim()}</span>`).join('');
-    const genreTag=p.genre?`<span class="tag genre">${p.genre}</span>`:'';
-    const thumb=p.photo?`<img src="${p.photo}" alt="">`:svgIco('parts',28,'stroke:var(--ink4)');
+    const tags=(p.note||'').split(/[,、]/).filter(Boolean).map(t=>`<span class="tag">${esc(t.trim())}</span>`).join('');
+    const genreTag=p.genre?`<span class="tag genre">${esc(p.genre)}</span>`:'';
+    const thumb=p.photo?`<img src="${esc(p.photo)}" alt="">`:svgIco('parts',28,'stroke:var(--ink4)');
     if(p.variants&&p.variants.length>0){
       const anyLow=p.variants.some(v=>!v.remaining||v.remaining<=0);
       const totalStock=p.variants.reduce((s,v)=>s+(v.remaining||0),0);
       return `<div class="card p-card" onclick="openPartsModal(${i})">
         <div class="p-thumb-sq">${thumb}</div>
         <div class="p-card-body">
-          <div class="p-name">${p.name}</div>
-          ${p.shop?`<div style="font-size:11px;color:var(--t3);margin-bottom:5px">${p.shop}</div>`:''}
+          <div class="p-name">${esc(p.name)}</div>
+          ${p.shop?`<div style="font-size:11px;color:var(--t3);margin-bottom:5px">${esc(p.shop)}</div>`:''}
           <div class="tags" style="margin-bottom:5px">${genreTag}<span class="tag">${p.variants.length}サイズ</span>${anyLow?'<span class="tag low">残り少</span>':''}</div>
           <div class="p-stock">
             <span style="color:var(--t3)">合計</span>
-            <strong style="${anyLow?'color:var(--red);':''}font-variant-numeric:tabular-nums">${totalStock}<span style="font-size:10px;font-weight:400;color:var(--t3);margin-left:1px">${p.unit}</span></strong>
+            <strong style="${anyLow?'color:var(--red);':''}font-variant-numeric:tabular-nums">${totalStock}<span style="font-size:10px;font-weight:400;color:var(--t3);margin-left:1px">${esc(p.unit)}</span></strong>
           </div>
         </div>
       </div>`;
     }
     const low=!p.remaining||p.remaining<=0;
-    const meta=[p.shop,p.price?'¥'+p.price.toLocaleString()+'/'+p.unit:''].filter(Boolean).join(' · ');
+    const meta=[esc(p.shop),p.price?'¥'+p.price.toLocaleString()+'/'+esc(p.unit):''].filter(Boolean).join(' · ');
     return `<div class="card p-card" onclick="openPartsModal(${i})">
       <div class="p-thumb-sq">${thumb}</div>
       <div class="p-card-body">
-        <div class="p-name">${p.name}</div>
+        <div class="p-name">${esc(p.name)}</div>
         ${meta?`<div style="font-size:11px;color:var(--t3);margin-bottom:5px">${meta}</div>`:''}
         ${genreTag||tags?`<div class="tags" style="margin-bottom:5px">${genreTag}${tags}</div>`:''}
         <div class="p-stock">
           <span style="color:var(--t3)">在庫</span>
-          <strong style="${low?'color:var(--red);':''}font-variant-numeric:tabular-nums">${p.remaining||0}<span style="font-size:10px;font-weight:400;color:var(--t3);margin-left:1px">${p.unit}</span>${low?` ${svgIco('warn',11,'stroke:var(--red)')}`:''}</strong>
+          <strong style="${low?'color:var(--red);':''}font-variant-numeric:tabular-nums">${p.remaining||0}<span style="font-size:10px;font-weight:400;color:var(--t3);margin-left:1px">${esc(p.unit)}</span>${low?` ${svgIco('warn',11,'stroke:var(--red)')}`:''}</strong>
         </div>
       </div>
     </div>`;
@@ -1006,15 +1065,17 @@ function renderWorks(){
   if(!db.works.length){list.innerHTML=`<div class="empty"><div class="empty-ic">${svgIco('shirt',32,'stroke:var(--ink4)')}</div>作品がまだ記録されていません</div>`;return;}
   list.innerHTML=db.works.map((w,i)=>{
     const cost=(w.materials||[]).reduce((s,m)=>s+(m.cost||0),0);
-    const profit=w.sell!=null?w.sell-cost:null;
-    const mats=(w.materials||[]).map(m=>`<div class="crow"><span>${m.name}　${m.qty}${m.unit}</span><span>¥${(m.cost||0).toLocaleString()}</span></div>`).join('');
-    const thumb=w.photo1?`<img src="${w.photo1}" alt="">`:svgIco('thread',26,'stroke:var(--ink3)');
+    const fee=w.fee||0;
+    const profit=w.sell!=null?w.sell-cost-fee:null;
+    const mats=(w.materials||[]).map(m=>`<div class="crow"><span>${esc(m.name)}${m.size?'（'+esc(m.size)+'）':''}　${m.qty}${esc(m.unit)}</span><span>¥${(m.cost||0).toLocaleString()}</span></div>`).join('');
+    const thumb=w.photo1?`<img src="${esc(w.photo1)}" alt="">`:svgIco('thread',26,'stroke:var(--ink3)');
     return `<div class="card">
     <div class="irow"><div class="wthumb">${thumb}</div><div class="ibody">
-      <div class="iname">${w.name}</div>
-      <div class="imeta">${w.date||''}${w.note?'　'+w.note:''}</div>
+      <div class="iname">${esc(w.name)}</div>
+      <div class="imeta">${esc(w.date)||''}${w.note?'　'+esc(w.note):''}</div>
       ${mats}
       <div class="ctotal"><span>原価</span><span>¥${cost.toLocaleString()}</span></div>
+      ${fee?`<div class="crow"><span>手数料・送料</span><span>¥${fee.toLocaleString()}</span></div>`:''}
       ${profit!=null?`<div class="ppill">販売 ¥${w.sell.toLocaleString()}　利益 ¥${profit.toLocaleString()}</div>`:''}
     </div></div>
     <div class="iactions">
@@ -1033,21 +1094,21 @@ function renderHistory(){
   list.innerHTML=db.history.map((h,i)=>{
     const typeLabel=h.itemType==='parts'?'付属品':'生地';
     const typeCls=h.itemType==='parts'?'parts':'';
-    const thumb=h.photo?`<img src="${h.photo}" alt="" style="width:44px;height:44px;border-radius:var(--rs);object-fit:cover;border:.5px solid var(--bdr-m);flex-shrink:0">`:
+    const thumb=h.photo?`<img src="${esc(h.photo)}" alt="" style="width:44px;height:44px;border-radius:var(--rs);object-fit:cover;border:.5px solid var(--bdr-m);flex-shrink:0">`:
       `<div style="width:44px;height:44px;border-radius:var(--rs);background:var(--surf-deep);border:.5px solid var(--bdr-m);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink3)">${h.itemType==='parts'?svgIco('parts',20):svgIco('fabric',20)}</div>`;
     const subtotal=h.variants?.length?h.variants.reduce((s,v)=>s+(v.price||0)*(v.qty||0),0):(h.price||0)*(h.qty||0);
     const detailLine=h.variants?.length
-      ?h.variants.map(v=>`${v.size||'—'}: ${v.qty}${h.unit||''}　¥${(v.price||0).toLocaleString()}`).join('<br>')
-      :[h.shop,h.qty+(h.unit||'m')+' × ¥'+(h.price||0).toLocaleString(),h.date].filter(Boolean).join('　');
+      ?h.variants.map(v=>`${esc(v.size||'—')}: ${v.qty}${esc(h.unit||'')}　¥${(v.price||0).toLocaleString()}`).join('<br>')
+      :[esc(h.shop),h.qty+esc(h.unit||'m')+' × ¥'+(h.price||0).toLocaleString(),esc(h.date)].filter(Boolean).join('　');
     return `<div class="card"><div class="irow" style="align-items:${h.variants?.length?'flex-start':'center'}">
       ${thumb}
       <div style="flex:1;min-width:0">
         <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
-          <div style="font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${h.name}</div>
+          <div style="font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(h.name)}</div>
           <span class="hist-type-badge ${typeCls}">${typeLabel}</span>
         </div>
         ${h.variants?.length
-          ?`<div style="font-size:13px;color:var(--t3);margin-bottom:2px">${[h.shop,h.date].filter(Boolean).join('　')}</div>
+          ?`<div style="font-size:13px;color:var(--t3);margin-bottom:2px">${[esc(h.shop),esc(h.date)].filter(Boolean).join('　')}</div>
             <div style="font-size:13px;color:var(--t2);line-height:1.8">${detailLine}</div>`
           :`<div style="font-size:13px;color:var(--t3)">${detailLine}</div>`}
         ${h.linkedId!=null?`<div style="margin-top:4px"><span class="linked-badge">${svgIco('check',10,'stroke-width:2.5')} 在庫に追加済み</span></div>`:''}
@@ -1067,7 +1128,7 @@ function renderSummary(){
   const now=new Date();
   const ym=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
   document.getElementById('sumLabel').textContent=`${now.getMonth()+1}月のまとめ`;
-  const lowF=db.fabrics.filter(f=>f.bought>0&&f.remaining/f.bought<=0.25);
+  const lowF=db.fabrics.filter(f=>f.bought>0?f.remaining/f.bought<=0.25:!(f.remaining>0));
   const lowP=db.parts.filter(p=>p.variants&&p.variants.length>0?p.variants.some(v=>!v.remaining||v.remaining<=0):!p.remaining||p.remaining<=0);
   document.getElementById('s-f').textContent=db.fabrics.length;
   const sfS=document.getElementById('s-f-s');
@@ -1078,7 +1139,7 @@ function renderSummary(){
   spS.textContent=lowP.length?`補充必要 ${lowP.length}種`:'';
   spS.className='ssub'+(lowP.length?' warn':'');
   const tCost=db.works.reduce((s,w)=>s+(w.materials||[]).reduce((ss,m)=>ss+(m.cost||0),0),0);
-  const tProfit=db.works.reduce((s,w)=>{const c=(w.materials||[]).reduce((ss,m)=>ss+(m.cost||0),0);return s+(w.sell!=null?w.sell-c:0);},0);
+  const tProfit=db.works.reduce((s,w)=>{const c=(w.materials||[]).reduce((ss,m)=>ss+(m.cost||0),0);return s+(w.sell!=null?w.sell-c-(w.fee||0):0);},0);
   document.getElementById('s-cost').textContent='¥'+tCost.toLocaleString();
   document.getElementById('s-cost-s').textContent=`${db.works.length}作品分`;
   document.getElementById('s-profit').textContent='¥'+tProfit.toLocaleString();
@@ -1093,10 +1154,10 @@ function renderSummary(){
   document.getElementById('s-use').innerHTML=useM.toFixed(1)+'<span class="unit">m</span>';
   document.getElementById('s-use-s').textContent=`${mWorks.length}作品`;
   const lows=[...lowF.map(f=>({n:f.name,v:f.remaining+'m'})),...lowP.flatMap(p=>p.variants&&p.variants.length>0?p.variants.filter(v=>!v.remaining||v.remaining<=0).map(v=>({n:p.name+(v.size?' ('+v.size+')':''),v:v.remaining+p.unit})):[{n:p.name,v:(p.remaining||0)+p.unit}])];
-  document.getElementById('lowSection').innerHTML=lows.length?`<div class="card" style="margin-bottom:10px"><div class="shead" style="margin-bottom:8px"><span class="stitle-sm">補充が必要なもの</span><span class="badge warn">${lows.length}件</span></div>${lows.map(l=>`<div style="display:flex;justify-content:space-between;font-size:14.5px;padding:4px 0"><span>${l.n}</span><span style="color:var(--red);font-weight:500">${l.v}</span></div>`).join('')}</div>`:'';
+  document.getElementById('lowSection').innerHTML=lows.length?`<div class="card" style="margin-bottom:10px"><div class="shead" style="margin-bottom:8px"><span class="stitle-sm">補充が必要なもの</span><span class="badge warn">${lows.length}件</span></div>${lows.map(l=>`<div style="display:flex;justify-content:space-between;font-size:14.5px;padding:4px 0"><span>${esc(l.n)}</span><span style="color:var(--red);font-weight:500">${esc(l.v)}</span></div>`).join('')}</div>`:'';
 }
 
-function uAll(){uFreebar();renderFabrics();renderParts();renderWorks();renderHistory();renderSummary();}
+function uAll(){renderFabrics();renderParts();renderWorks();renderHistory();renderSummary();uBackupBar();}
 
 // ===== SVG ICONS =====
 function svgIco(name,size=16,style=''){
@@ -1147,7 +1208,6 @@ function closeM(t){document.getElementById('modal-'+t).classList.remove('open');
 
 // ===== FABRIC MODAL =====
 function openFabricModal(idx=-1){
-  if(idx===-1&&totalItems()>=10){openM('upgrade');return;}
   editIdx.fabric=idx;
   const isEdit=idx>=0;
   document.getElementById('f-modal-title').textContent=isEdit?'生地を編集':'生地を登録';
@@ -1176,8 +1236,8 @@ function saveFabric(){
   if(!name){showError('生地名を入力してください');return;}
   const bought=parseFloat(document.getElementById('f-bought').value)||0;
   const rem=document.getElementById('f-rem').value!==''?parseFloat(document.getElementById('f-rem').value):bought;
-  const existColor=editIdx.fabric>=0?db.fabrics[editIdx.fabric]?.color||'':''  ;
-  const item={name,photo:fPhoto,genre:document.getElementById('f-genre').value,color:existColor,material:document.getElementById('f-mat').value,shop:document.getElementById('f-shop').value,price:parseFloat(document.getElementById('f-price').value)||0,width:parseFloat(document.getElementById('f-width').value)||0,bought,remaining:rem,note:document.getElementById('f-note').value};
+  const existing=editIdx.fabric>=0?db.fabrics[editIdx.fabric]:null;
+  const item={id:existing?.id||_uid(),name,photo:fPhoto,genre:document.getElementById('f-genre').value,color:existing?.color||'',material:document.getElementById('f-mat').value,shop:document.getElementById('f-shop').value,price:parseFloat(document.getElementById('f-price').value)||0,width:parseFloat(document.getElementById('f-width').value)||0,bought,remaining:rem,note:document.getElementById('f-note').value};
   if(editIdx.fabric>=0){db.fabrics[editIdx.fabric]=item;showToast('生地を更新しました');}
   else{db.fabrics.push(item);showToast('生地を登録しました');}
   closeM('fabric');sDB();
@@ -1185,7 +1245,6 @@ function saveFabric(){
 
 // ===== PARTS MODAL =====
 function openPartsModal(idx=-1){
-  if(idx===-1&&totalItems()>=10){openM('upgrade');return;}
   editIdx.parts=idx;
   const isEdit=idx>=0;
   document.getElementById('p-modal-title').textContent=isEdit?'付属品を編集':'付属品を登録';
@@ -1228,14 +1287,16 @@ function savePart(){
   const shop=document.getElementById('p-shop').value;
   const note=document.getElementById('p-note').value;
   const hasVariants=document.getElementById('p-variant-toggle').checked;
+  const existing=editIdx.parts>=0?db.parts[editIdx.parts]:null;
+  const id=existing?.id||_uid();
   let item;
   if(hasVariants){
     if(variantRows.length===0){showError('サイズ・種類を1つ以上追加してください');return;}
-    item={name,photo:pPhoto,genre,unit,shop,note,
+    item={id,name,photo:pPhoto,genre,unit,shop,note,
       variants:variantRows.map(v=>({size:v.size||'',price:v.price||0,remaining:v.remaining||0}))};
   } else {
     const rem=document.getElementById('p-rem').value!==''?parseFloat(document.getElementById('p-rem').value):0;
-    item={name,photo:pPhoto,genre,unit,shop,price:parseFloat(document.getElementById('p-price').value)||0,bought:rem,remaining:rem,note};
+    item={id,name,photo:pPhoto,genre,unit,shop,price:parseFloat(document.getElementById('p-price').value)||0,bought:rem,remaining:rem,note};
   }
   if(editIdx.parts>=0){db.parts[editIdx.parts]=item;showToast('付属品を更新しました');}
   else{db.parts.push(item);showToast('付属品を登録しました');}
@@ -1253,6 +1314,7 @@ function openWorksModal(idx=-1){
   document.getElementById('w-name').value=w?.name||'';
   document.getElementById('w-date').value=w?.date||new Date().toISOString().slice(0,10);
   document.getElementById('w-sell').value=w?.sell??'';
+  document.getElementById('w-fee').value=w?.fee||'';
   document.getElementById('w-note').value=w?.note||'';
   matRows=w?(w.materials||[]).map(m=>({...m,_idx:-1,_price:0})):[];
   renderMats();
@@ -1260,32 +1322,31 @@ function openWorksModal(idx=-1){
   setPhotoPreview('w-prev2','w2-photo-clear',w2Photo);
   openM('works');
 }
+function adjustStockForMat(m,delta){
+  let item=db.fabrics.find(f=>f.id===m.itemId)||db.parts.find(p=>p.id===m.itemId);
+  if(!item&&m.name)item=db.fabrics.find(f=>f.name===m.name)||db.parts.find(p=>p.name===m.name);
+  if(!item)return;
+  if(item.variants&&item.variants.length){
+    const v=item.variants.find(vv=>(vv.size||'')===(m.size||''));
+    if(v)v.remaining=Math.max(0,Math.round(((v.remaining||0)+delta)*100)/100);
+  } else {
+    item.remaining=Math.max(0,Math.round(((item.remaining||0)+delta)*100)/100);
+  }
+}
 function saveWork(){
   const name=document.getElementById('w-name').value.trim();
   if(!name){showError('作品名を入力してください');return;}
   const sellVal=document.getElementById('w-sell').value;
-  const newMats=matRows.map(m=>({name:m.name,qty:m.qty,unit:m.unit,cost:m.cost,_idx:m._idx}));
-  const item={name,photo1:w1Photo,photo2:w2Photo,date:document.getElementById('w-date').value,sell:sellVal?parseFloat(sellVal):null,materials:newMats.map(m=>({name:m.name,qty:m.qty,unit:m.unit,cost:m.cost})),note:document.getElementById('w-note').value};
-  const allItems=[...db.fabrics.map((f,i)=>({arr:db.fabrics,i,unit:'m'})),...db.parts.map((p,i)=>({arr:db.parts,i,unit:p.unit}))];
+  const fee=parseFloat(document.getElementById('w-fee').value)||0;
+  const newMats=matRows.filter(m=>m.itemId||m.name).map(m=>({itemId:m.itemId||null,size:m.size||'',name:m.name,qty:m.qty||0,unit:m.unit,cost:m.cost||0}));
+  const item={name,photo1:w1Photo,photo2:w2Photo,date:document.getElementById('w-date').value,sell:sellVal?parseFloat(sellVal):null,fee,materials:newMats,note:document.getElementById('w-note').value};
   if(editIdx.works>=0){
-    const oldMats=db.works[editIdx.works].materials||[];
-    oldMats.forEach(om=>{
-      const found=allItems.find(it=>it.arr[it.i].name===om.name);
-      if(found)found.arr[found.i].remaining=Math.round((found.arr[found.i].remaining+(om.qty||0))*100)/100;
-    });
-    newMats.forEach(nm=>{
-      if(!nm.name)return;
-      const found=allItems.find(it=>it.arr[it.i].name===nm.name);
-      if(found)found.arr[found.i].remaining=Math.max(0,Math.round((found.arr[found.i].remaining-(nm.qty||0))*100)/100);
-    });
+    (db.works[editIdx.works].materials||[]).forEach(om=>adjustStockForMat(om,om.qty||0));
+    newMats.forEach(nm=>adjustStockForMat(nm,-(nm.qty||0)));
     db.works[editIdx.works]=item;
     showToast('作品を更新しました');
   } else {
-    newMats.forEach(nm=>{
-      if(!nm.name)return;
-      const found=allItems.find(it=>it.arr[it.i].name===nm.name);
-      if(found)found.arr[found.i].remaining=Math.max(0,Math.round((found.arr[found.i].remaining-(nm.qty||0))*100)/100);
-    });
+    newMats.forEach(nm=>adjustStockForMat(nm,-(nm.qty||0)));
     db.works.push(item);
     showToast('作品を記録しました');
   }
@@ -1293,23 +1354,51 @@ function saveWork(){
 }
 
 // ===== MATERIALS =====
-function addMat(){matRows.push({_idx:-1,name:'',qty:0,unit:'m',cost:0,_price:0});renderMats();}
+// 材料候補：バリエーション管理の付属品はサイズごとに1候補として展開する
+function matCandidates(){
+  const out=[];
+  db.fabrics.forEach(f=>out.push({itemId:f.id,size:'',name:f.name,label:f.name+(f.material?' ('+f.material+')':''),unit:'m',price:f.price||0}));
+  db.parts.forEach(p=>{
+    if(p.variants&&p.variants.length){
+      p.variants.forEach(v=>out.push({itemId:p.id,size:v.size||'',name:p.name,label:p.name+(v.size?'（'+v.size+'）':''),unit:p.unit,price:v.price||0}));
+    } else {
+      out.push({itemId:p.id,size:'',name:p.name,label:p.name,unit:p.unit,price:p.price||0});
+    }
+  });
+  return out;
+}
+function addMat(){matRows.push({itemId:null,size:'',name:'',qty:0,unit:'m',cost:0,_idx:-1,_price:0});renderMats();}
 function renderMats(){
-  const all=[...db.fabrics.map(f=>({label:f.name+(f.material?' ('+f.material+')':''),unit:'m',price:f.price,name:f.name})),...db.parts.map(p=>({label:p.name,unit:p.unit,price:p.price,name:p.name}))];
-  matRows.forEach(m=>{if(m._idx===-1&&m.name){const idx=all.findIndex(it=>it.name===m.name);if(idx>=0){m._idx=idx;m._price=all[idx].price||0;}}});
+  const all=matCandidates();
+  matRows.forEach(m=>{
+    if(m._idx===-1&&(m.itemId||m.name)){
+      let idx=all.findIndex(it=>m.itemId?(it.itemId===m.itemId&&(it.size||'')===(m.size||'')):(it.name===m.name&&!it.size));
+      if(idx<0&&m.name)idx=all.findIndex(it=>it.name===m.name);
+      if(idx>=0){m._idx=idx;m._price=all[idx].price||0;}
+    }
+  });
   document.getElementById('w-mats').innerHTML=matRows.map((m,i)=>`
     <div style="display:grid;grid-template-columns:2fr 1fr auto;gap:6px;margin-bottom:6px;align-items:center">
       <select onchange="updMat(${i},'s',this.value)" style="padding:8px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-family:inherit;font-size:13px;background:var(--bg);color:var(--t1);outline:none">
         <option value="">選択...</option>
-        ${all.map((it,j)=>`<option value="${j}"${m._idx===j?' selected':''}>${it.label}</option>`).join('')}
+        ${all.map((it,j)=>`<option value="${j}"${m._idx===j?' selected':''}>${esc(it.label)}</option>`).join('')}
       </select>
       <input type="number" min="0" step="0.1" placeholder="数量" value="${m.qty||''}" onchange="updMat(${i},'q',this.value)" style="padding:8px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-size:13px;background:var(--bg);color:var(--t1);outline:none">
       <button onclick="remMat(${i})" style="padding:6px 10px;border:none;background:var(--red-l);color:var(--red);border-radius:var(--rs);cursor:pointer;font-size:14px">×</button>
     </div>`).join('');
 }
 function updMat(i,f,v){
-  const all=[...db.fabrics.map(f=>({unit:'m',price:f.price,name:f.name})),...db.parts.map(p=>({unit:p.unit,price:p.price,name:p.name}))];
-  if(f==='s'){const idx=parseInt(v);matRows[i]._idx=idx;matRows[i].name=all[idx]?.name||'';matRows[i].unit=all[idx]?.unit||'m';matRows[i]._price=all[idx]?.price||0;}
+  const all=matCandidates();
+  if(f==='s'){
+    const idx=parseInt(v);
+    const it=isNaN(idx)?null:all[idx];
+    matRows[i]._idx=it?idx:-1;
+    matRows[i].itemId=it?.itemId||null;
+    matRows[i].size=it?.size||'';
+    matRows[i].name=it?.name||'';
+    matRows[i].unit=it?.unit||'m';
+    matRows[i]._price=it?.price||0;
+  }
   if(f==='q'){matRows[i].qty=parseFloat(v)||0;}
   matRows[i].cost=Math.round((matRows[i]._price||0)*(matRows[i].qty||0));
 }
@@ -1332,7 +1421,7 @@ function renderVariantRows(){
     :variantRows.map((v,i)=>`
     <div style="background:var(--bg);border-radius:var(--rs);padding:10px;margin-bottom:7px;border:.5px solid var(--bdr-m)">
       <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px">
-        <input placeholder="サイズ・種類（例：11mm、大）" value="${v.size||''}" oninput="variantRows[${i}].size=this.value"
+        <input placeholder="サイズ・種類（例：11mm、大）" value="${esc(v.size||'')}" oninput="variantRows[${i}].size=this.value"
                style="flex:1;padding:8px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-size:14px;font-family:inherit;background:var(--surf);color:var(--t1);outline:none">
         <button onclick="removeVariantRow(${i})" style="padding:5px 9px;border:none;background:var(--red-l);color:var(--red);border-radius:var(--rs);cursor:pointer;font-size:14px;flex-shrink:0">×</button>
       </div>
@@ -1341,13 +1430,13 @@ function renderVariantRows(){
         <input type="number" min="0" placeholder="0" value="${v.price||''}" oninput="variantRows[${i}].price=parseFloat(this.value)||0"
                style="width:100%;padding:7px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-size:14px;font-family:inherit;background:var(--surf);color:var(--t1);outline:none">
       </div>
-      <div style="font-size:12px;color:var(--t3);margin-bottom:4px">現在の在庫（${unit}）</div>
+      <div style="font-size:12px;color:var(--t3);margin-bottom:4px">現在の在庫（${esc(unit)}）</div>
       <div class="stock-adj">
         <button onclick="adjVariant(${i},-1)">－</button>
         <input type="number" min="0" value="${v.remaining!=null?v.remaining:''}" oninput="variantRows[${i}].remaining=parseFloat(this.value)||0"
                style="width:84px;text-align:center;padding:8px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-size:14px;font-family:inherit;background:var(--surf);outline:none">
         <button onclick="adjVariant(${i},1)">＋</button>
-        <span style="font-size:14.5px;color:var(--t2)">${unit}</span>
+        <span style="font-size:14.5px;color:var(--t2)">${esc(unit)}</span>
       </div>
     </div>`).join('');
 }
@@ -1376,9 +1465,9 @@ function buildTargetSel(){
   const cur=sel.value;
   sel.innerHTML='<option value="new">＋ 新規アイテムとして登録</option>';
   const arr=histType==='fabric'?db.fabrics:db.parts;
-  arr.forEach((item,i)=>{
+  arr.forEach(item=>{
     const o=document.createElement('option');
-    o.value='existing_'+i;
+    o.value='existing_'+item.id;
     o.textContent='既存：'+item.name;
     sel.appendChild(o);
   });
@@ -1400,8 +1489,8 @@ function onTargetChange(){
       document.getElementById('h-variant-rows').style.display=varOn?'block':'none';
       if(varOn)renderHistVariantRows();
     } else {
-      const existIdx=parseInt(val.replace('existing_',''));
-      const item=db.parts[existIdx];
+      const existId=val.slice('existing_'.length);
+      const item=db.parts.find(p=>p.id===existId);
       document.getElementById('h-variant-toggle-wrap').style.display='none';
       toggle.checked=false;
       if(item?.variants?.length){
@@ -1447,7 +1536,7 @@ function renderHistVariantRows(){
     :histVariantRows.map((v,i)=>`
     <div style="background:var(--bg);border-radius:var(--rs);padding:10px;margin-bottom:7px;border:.5px solid var(--bdr-m)">
       <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px">
-        <input type="text" placeholder="サイズ・種類名" value="${v.size||''}"
+        <input type="text" placeholder="サイズ・種類名" value="${esc(v.size||'')}"
           oninput="histVariantRows[${i}].size=this.value"
           style="flex:1;padding:7px 10px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-family:inherit;font-size:14px;background:var(--surf)">
         <button type="button" onclick="removeHistVariantRow(${i})"
@@ -1461,13 +1550,13 @@ function renderHistVariantRows(){
             style="width:100%;padding:7px 10px;border:.5px solid var(--bdr-m);border-radius:var(--rs);font-family:inherit;font-size:14px;background:var(--surf)">
         </div>
         <div>
-          <div style="font-size:12px;color:var(--t3);margin-bottom:4px">数量（${unit}）</div>
+          <div style="font-size:12px;color:var(--t3);margin-bottom:4px">数量（${esc(unit)}）</div>
           <div class="stock-adj">
             <button onclick="adjHistVariant(${i},-1)">－</button>
             <input id="h-vqty-${i}" type="number" min="0" step="1" value="${v.qty||0}"
               oninput="histVariantRows[${i}].qty=parseFloat(this.value)||0">
             <button onclick="adjHistVariant(${i},1)">＋</button>
-            <span style="font-size:14.5px;color:var(--t2)">${unit}</span>
+            <span style="font-size:14.5px;color:var(--t2)">${esc(unit)}</span>
           </div>
         </div>
       </div>
@@ -1490,7 +1579,10 @@ function openHistModal(idx=-1){
   document.getElementById('h-width').value=h?.width||'';
   document.getElementById('h-price').value=h?.price||'';
   document.getElementById('h-qty').value=h?.qty||'';
-  document.getElementById('h-unit').value=h?.unit||(histType==='fabric'?'m':'個');
+  const unitSel=document.getElementById('h-unit');
+  const wantUnit=h?.unit||(histType==='fabric'?'m':'個');
+  if(![...unitSel.options].some(o=>o.value===wantUnit)){const o=document.createElement('option');o.value=wantUnit;o.textContent=wantUnit;unitSel.appendChild(o);}
+  unitSel.value=wantUnit;
   document.getElementById('h-note').value=h?.note||'';
   document.getElementById('h-genre').value=h?.genre||'';
   fillDatalist('h-mat','h-mat-list','material',h?.material||'');
@@ -1520,52 +1612,52 @@ function saveHistory(){
   const targetVal=document.getElementById('h-target').value;
   const isNew=targetVal==='new';
   const isFabric=histType==='fabric';
-  const hWidth=isFabric?(parseFloat(document.getElementById('h-width').value)||null):null;
-  const histItem={name,itemType:histType,photo:hPhoto,date:document.getElementById('h-date').value,shop:document.getElementById('h-shop').value,price,qty,unit,width:hWidth,note:document.getElementById('h-note').value,genre:document.getElementById('h-genre').value,material:document.getElementById('h-mat').value,color:selHCol,linkedId:null};
   const variantMode=document.getElementById('h-variant-rows').style.display!=='none'&&histVariantRows.length>0;
+  // バリデーションはここまでにすべて済ませる（在庫を変更した後にreturnするとデータが壊れる）
+  if(isNew&&!isFabric&&variantMode&&histVariantRows.every(v=>!v.size)){showError('サイズ・種類名を入力してください');return;}
+  const hWidth=isFabric?(parseFloat(document.getElementById('h-width').value)||null):null;
+  const histItem={name,itemType:histType,photo:hPhoto,date:document.getElementById('h-date').value,shop:document.getElementById('h-shop').value,price,qty,unit,width:hWidth,note:document.getElementById('h-note').value,genre:document.getElementById('h-genre').value,material:document.getElementById('h-mat').value,linkedId:null};
   if(editIdx.history>=0){
     const oldH=db.history[editIdx.history];
     if(oldH.linkedId!=null){
-      const oldArr=oldH.itemType==='fabric'?db.fabrics:db.parts;
-      if(oldArr[oldH.linkedId]){
-        if(oldH.variants?.length&&oldArr[oldH.linkedId].variants){
-          oldH.variants.forEach(hv=>{const pv=oldArr[oldH.linkedId].variants.find(v=>v.size===hv.size);if(pv)pv.remaining=Math.max(0,Math.round(((pv.remaining||0)-(hv.qty||0))*100)/100);});
+      const oldItem=findLinked(oldH.itemType,oldH.linkedId);
+      if(oldItem){
+        if(oldH.variants?.length&&oldItem.variants){
+          oldH.variants.forEach(hv=>{const pv=oldItem.variants.find(v=>v.size===hv.size);if(pv)pv.remaining=Math.max(0,Math.round(((pv.remaining||0)-(hv.qty||0))*100)/100);});
         } else {
-          oldArr[oldH.linkedId].bought=Math.max(0,Math.round(((oldArr[oldH.linkedId].bought||0)-(oldH.qty||0))*100)/100);
-          oldArr[oldH.linkedId].remaining=Math.max(0,Math.round(((oldArr[oldH.linkedId].remaining||0)-(oldH.qty||0))*100)/100);
+          oldItem.bought=Math.max(0,Math.round(((oldItem.bought||0)-(oldH.qty||0))*100)/100);
+          oldItem.remaining=Math.max(0,Math.round(((oldItem.remaining||0)-(oldH.qty||0))*100)/100);
         }
       }
     }
   }
   if(isNew){
-    if(editIdx.history===-1&&totalItems()>=10){openM('upgrade');return;}
     if(isFabric){
-      const newItem={name,photo:hPhoto,genre:histItem.genre,color:selHCol,material:histItem.material,shop:histItem.shop,price,bought:qty,remaining:qty,note:histItem.note,width:hWidth};
-      db.fabrics.push(newItem);histItem.linkedId=db.fabrics.length-1;
+      const newItem={id:_uid(),name,photo:hPhoto,genre:histItem.genre,material:histItem.material,shop:histItem.shop,price,bought:qty,remaining:qty,note:histItem.note,width:hWidth};
+      db.fabrics.push(newItem);histItem.linkedId=newItem.id;
     } else if(variantMode){
-      if(histVariantRows.every(v=>!v.size)){showError('サイズ・種類名を入力してください');return;}
-      const newItem={name,photo:hPhoto,genre:histItem.genre,unit,shop:histItem.shop,note:histItem.note,variants:histVariantRows.map(v=>({size:v.size||'',price:v.price||0,remaining:v.qty||0}))};
-      db.parts.push(newItem);histItem.linkedId=db.parts.length-1;
+      const newItem={id:_uid(),name,photo:hPhoto,genre:histItem.genre,unit,shop:histItem.shop,note:histItem.note,variants:histVariantRows.map(v=>({size:v.size||'',price:v.price||0,remaining:v.qty||0}))};
+      db.parts.push(newItem);histItem.linkedId=newItem.id;
       histItem.variants=histVariantRows.map(v=>({size:v.size||'',price:v.price||0,qty:v.qty||0}));
       histItem.qty=histVariantRows.reduce((s,v)=>s+(v.qty||0),0);histItem.price=0;
     } else {
-      const newItem={name,photo:hPhoto,genre:histItem.genre,unit,shop:histItem.shop,price,bought:qty,remaining:qty,note:histItem.note};
-      db.parts.push(newItem);histItem.linkedId=db.parts.length-1;
+      const newItem={id:_uid(),name,photo:hPhoto,genre:histItem.genre,unit,shop:histItem.shop,price,bought:qty,remaining:qty,note:histItem.note};
+      db.parts.push(newItem);histItem.linkedId=newItem.id;
     }
   } else {
-    const existIdx=parseInt(targetVal.replace('existing_',''));
-    const arr=isFabric?db.fabrics:db.parts;
-    if(arr[existIdx]){
-      if(variantMode&&arr[existIdx].variants){
-        histVariantRows.forEach(vr=>{const pv=arr[existIdx].variants.find(v=>v.size===vr.size);if(pv)pv.remaining=Math.round(((pv.remaining||0)+(vr.qty||0))*100)/100;else if(vr.size)arr[existIdx].variants.push({size:vr.size,price:vr.price||0,remaining:vr.qty||0});});
+    const existId=targetVal.slice('existing_'.length);
+    const target=findLinked(histType,existId);
+    if(target){
+      if(variantMode&&target.variants){
+        histVariantRows.forEach(vr=>{const pv=target.variants.find(v=>v.size===vr.size);if(pv)pv.remaining=Math.round(((pv.remaining||0)+(vr.qty||0))*100)/100;else if(vr.size)target.variants.push({size:vr.size,price:vr.price||0,remaining:vr.qty||0});});
         histItem.variants=histVariantRows.map(v=>({size:v.size||'',price:v.price||0,qty:v.qty||0}));
         histItem.qty=histVariantRows.reduce((s,v)=>s+(v.qty||0),0);histItem.price=0;
       } else {
-        arr[existIdx].bought=Math.round(((arr[existIdx].bought||0)+qty)*100)/100;
-        arr[existIdx].remaining=Math.round(((arr[existIdx].remaining||0)+qty)*100)/100;
+        target.bought=Math.round(((target.bought||0)+qty)*100)/100;
+        target.remaining=Math.round(((target.remaining||0)+qty)*100)/100;
       }
-      if(hPhoto&&!arr[existIdx].photo)arr[existIdx].photo=hPhoto;
-      histItem.linkedId=existIdx;
+      if(hPhoto&&!target.photo)target.photo=hPhoto;
+      histItem.linkedId=target.id;
     }
   }
   if(editIdx.history>=0){db.history[editIdx.history]=histItem;showToast('購入記録を更新しました');}
@@ -1573,17 +1665,42 @@ function saveHistory(){
   closeM('history');sDB();
 }
 
-// ===== DELETE =====
+// ===== DELETE（取り消し可能） =====
+const DB_KEYS={fabric:'fabrics',parts:'parts',works:'works',history:'history'};
+let _undoDel=null;
 function delItem(type,i){
   if(!confirm('削除してもよいですか？'))return;
-  const k=type==='fabric'?'fabrics':type==='parts'?'parts':type==='works'?'works':'history';
-  db[k].splice(i,1);sDB();showToast('削除しました');
+  const k=DB_KEYS[type];
+  const item=db[k][i];
+  db[k].splice(i,1);
+  sDB();
+  offerUndo(k,i,item);
 }
 function delCurrent(type){
   if(!confirm('削除してもよいですか？'))return;
-  const k=type==='fabric'?'fabrics':type==='parts'?'parts':'history';
-  db[k].splice(editIdx[type],1);
-  closeM(type);sDB();showToast('削除しました');
+  const k=DB_KEYS[type];
+  const i=editIdx[type];
+  const item=db[k][i];
+  db[k].splice(i,1);
+  closeM(type);
+  sDB();
+  offerUndo(k,i,item);
+}
+function offerUndo(k,i,item){
+  _undoDel={k,i,item};
+  const t=document.getElementById('toast');
+  t.innerHTML='削除しました<button class="undo-btn" onclick="undoDelete()">元に戻す</button>';
+  t.style.background='';t.classList.add('show','undo');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>{t.classList.remove('show','undo');_undoDel=null;},6000);
+}
+function undoDelete(){
+  if(!_undoDel)return;
+  const {k,i,item}=_undoDel;
+  _undoDel=null;
+  db[k].splice(Math.min(i,db[k].length),0,item);
+  sDB();
+  showToast('元に戻しました');
 }
 
 // ===== EXPORT / IMPORT =====
@@ -1596,25 +1713,30 @@ function exportData(){
   a.href=url;a.download='nunonote_'+date+'.json';
   document.body.appendChild(a);a.click();
   document.body.removeChild(a);URL.revokeObjectURL(url);
+  meta.lastExportAt=Date.now();
+  persist('meta',meta);
+  uBackupBar();
   showToast('エクスポートしました');
 }
 function importData(input){
   const file=input.files[0];if(!file)return;
-  if(!confirm('インポートすると現在のデータはすべて上書きされます。よろしいですか？'))return;
+  if(!confirm('インポートすると現在のデータはすべて上書きされます。よろしいですか？')){input.value='';return;}
   const reader=new FileReader();
   reader.onload=e=>{
     try{
       const payload=JSON.parse(e.target.result);
-      if(!payload.db||!payload.ms){showError('ファイルの形式が正しくありません');return;}
-      db=payload.db;ms=payload.ms;
-      _lsSave('nn_db4',JSON.stringify(db));
-      _lsSave('nn_ms4',JSON.stringify(ms));
+      const d=payload.db;
+      if(!d||!payload.ms||![d.fabrics,d.parts,d.works,d.history].every(Array.isArray)){showError('ファイルの形式が正しくありません');return;}
+      db=d;ms=payload.ms;
+      migrateDB();
+      persist('db',db);persist('ms',ms);
       renderMS();uFilters();uAll();
       showToast('インポートが完了しました');
     }catch(err){
       showError('ファイルの読み込みに失敗しました');
+    }finally{
+      input.value='';
     }
-    input.value='';
   };
   reader.readAsText(file);
 }
@@ -1656,11 +1778,12 @@ function exportCSV(type){
     showToast('購入記録CSVを出力しました');
   } else {
     if(!db.works.length){showError('作品記録がありません');return;}
-    const rows=[['制作日','作品名','販売価格（円）','原価（円）','利益（円）','メモ']];
+    const rows=[['制作日','作品名','販売価格（円）','原価（円）','手数料・送料（円）','利益（円）','メモ']];
     db.works.forEach(w=>{
       const cost=(w.materials||[]).reduce((s,m)=>s+(m.cost||0),0);
-      const profit=w.sell!=null?w.sell-cost:'';
-      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,profit,w.note||'']);
+      const fee=w.fee||0;
+      const profit=w.sell!=null?w.sell-cost-fee:'';
+      rows.push([w.date||'',w.name,w.sell!=null?w.sell:'',cost,fee,profit,w.note||'']);
     });
     downloadCSV(rows,'nunonote_作品記録');
     showToast('作品記録CSVを出力しました');
@@ -1668,7 +1791,8 @@ function exportCSV(type){
 }
 
 // ===== 初期化 =====
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', async function(){
+  await loadData();
   renderMS();
   uFilters();
   uAll();
