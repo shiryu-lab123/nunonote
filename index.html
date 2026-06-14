@@ -1189,6 +1189,7 @@ function showTab(id,btn){
   if(btn) btn.classList.add('active');
   else{const nb=document.getElementById('nav-'+id);if(nb)nb.classList.add('active');}
   currentTab=id;
+  window.scrollTo(0,0);
   updateAddBtn();
 }
 function updateAddBtn(){
