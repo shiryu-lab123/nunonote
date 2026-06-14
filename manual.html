@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ぬのーと｜つかいかたガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EB; --surf:#FFFFFF; --surf-deep:#EDE9E1; --surf-tint:#E7E2D6;
+  --ink:#3A3530; --ink2:#6B645B; --ink3:#A39B92; --ink4:#C7BFB3;
+  --rule:rgba(58,53,48,0.10); --rule-m:rgba(58,53,48,0.14);
+  --accent:#A06A35; --accent-d:#6B4520; --accent-l:rgba(160,106,53,0.10); --accent-mid:rgba(160,106,53,0.18);
+  --warn:#B23A2E; --warn-soft:rgba(178,58,46,0.08);
+  --ok:#4F7A3F; --ok-soft:rgba(79,122,63,0.10);
+  --r:14px; --rs:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Zen Kaku Gothic New','Noto Sans JP','Hiragino Sans',system-ui,sans-serif;
+  background:var(--bg); color:var(--ink); font-size:16px; line-height:1.8;
+  padding-bottom:60px; -webkit-font-smoothing:antialiased;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(155deg,var(--accent-d) 0%,var(--accent) 100%);
+  color:#fff; padding:46px 22px 40px; text-align:center; position:relative; overflow:hidden;
+}
+.header::before{content:'';position:absolute;top:-40px;right:-30px;width:170px;height:170px;background:rgba(255,255,255,0.07);border-radius:50%;}
+.header::after{content:'';position:absolute;bottom:-50px;left:-30px;width:130px;height:130px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.h-logo{display:inline-flex;align-items:center;gap:11px;margin-bottom:18px;position:relative;z-index:1;}
+.h-logo-ic{width:46px;height:46px;background:rgba(255,255,255,0.18);border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+.h-logo-ic .c{font-size:21px;font-weight:900;color:#fff;line-height:1;}
+.h-logo-ic .s{font-size:7px;color:rgba(255,255,255,0.8);letter-spacing:0.12em;margin-top:2px;}
+.h-logo-name{font-size:23px;font-weight:900;letter-spacing:0.04em;}
+.h-tagline{font-size:17px;font-weight:700;margin-bottom:8px;position:relative;z-index:1;}
+.h-sub{font-size:13px;color:rgba(255,255,255,0.78);position:relative;z-index:1;}
+
+/* QUICK NAV */
+.qnav{
+  background:var(--surf); padding:13px 14px 11px; position:sticky; top:0; z-index:50;
+  border-bottom:.5px solid var(--rule); box-shadow:0 2px 14px rgba(58,53,48,0.07);
+}
+.qnav-label{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:0.09em;margin-bottom:8px;}
+.qnav-list{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:2px;}
+.qnav-list::-webkit-scrollbar{display:none;}
+.qn{
+  flex-shrink:0;padding:6px 13px;border-radius:100px;border:.5px solid var(--rule-m);
+  font-size:12.5px;font-weight:700;font-family:inherit;background:transparent;color:var(--ink2);
+  text-decoration:none;white-space:nowrap;transition:all .15s;cursor:pointer;
+}
+.qn:hover,.qn:active{background:var(--accent-l);border-color:var(--accent);color:var(--accent-d);}
+
+/* MAIN */
+main{max-width:640px;margin:0 auto;padding:0 16px;}
+
+/* INTRO */
+.intro{background:var(--surf);border-radius:var(--r);padding:20px 22px;border:.5px solid var(--rule);margin:22px 0 6px;display:flex;gap:14px;align-items:flex-start;}
+.intro-emo{font-size:26px;flex-shrink:0;margin-top:2px;}
+.intro-ttl{font-size:15px;font-weight:700;margin-bottom:5px;}
+.intro-body{font-size:14px;color:var(--ink2);line-height:1.85;}
+
+/* FIRST FLOW */
+.flow{background:var(--accent-l);border-radius:var(--r);padding:20px;margin:18px 0;border:.5px solid var(--accent-mid);}
+.flow-ttl{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--accent-d);margin-bottom:14px;}
+.flow-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.flow-step{background:#fff;border-radius:9px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--accent-d);border:.5px solid var(--accent-mid);}
+.flow-arr{color:var(--accent);font-weight:700;}
+.flow-note{font-size:13px;color:var(--accent-d);margin-top:13px;line-height:1.8;}
+
+/* SECTION */
+.sec{margin:34px 0 0;scroll-margin-top:84px;}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.sec-ic{width:44px;height:44px;border-radius:13px;background:var(--accent-l);color:var(--accent-d);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sec-ic svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.sec-tab{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--ink3);margin-bottom:1px;}
+.sec-ttl{font-size:19px;font-weight:900;color:var(--ink);}
+
+/* CARD */
+.card{background:var(--surf);border-radius:var(--r);padding:18px;border:.5px solid var(--rule);margin-bottom:10px;}
+.card-lead{font-size:14px;color:var(--ink2);line-height:1.85;margin-bottom:14px;}
+.card-label{font-size:12px;font-weight:700;color:var(--ink3);letter-spacing:0.04em;margin-bottom:12px;}
+
+/* STEP LIST */
+.steps{display:flex;flex-direction:column;}
+.step{display:flex;gap:14px;position:relative;}
+.step:not(:last-child)::after{content:'';position:absolute;left:15px;top:32px;bottom:-2px;width:1.5px;background:var(--rule);}
+.step-n{width:30px;height:30px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;position:relative;z-index:1;}
+.step-b{flex:1;padding-bottom:18px;}
+.step:last-child .step-b{padding-bottom:0;}
+.step-t{font-size:14.5px;font-weight:700;margin-bottom:3px;}
+.step-d{font-size:13.5px;color:var(--ink2);line-height:1.8;}
+.btnname{display:inline-block;background:var(--accent);color:#fff;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:7px;margin:0 1px;}
+
+/* FIELD TABLE */
+.ftbl{width:100%;border-collapse:collapse;}
+.ftbl th{text-align:left;font-size:11px;font-weight:700;color:var(--ink3);padding:0 0 8px;border-bottom:.5px solid var(--rule);}
+.ftbl td{font-size:13.5px;padding:10px 8px 10px 0;border-bottom:.5px solid var(--rule);vertical-align:top;line-height:1.7;}
+.ftbl tr:last-child td{border-bottom:none;}
+.fname{font-weight:700;width:38%;color:var(--ink);}
+.fdesc{color:var(--ink2);}
+.tag{display:inline-flex;font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700;vertical-align:middle;margin-left:4px;}
+.tag.opt{background:var(--surf-deep);color:var(--ink3);}
+.tag.req{background:var(--warn-soft);color:var(--warn);}
+.tag.auto{background:var(--ok-soft);color:var(--ok);}
+
+/* TIP / WARN */
+.tip,.warn{display:flex;gap:10px;border-radius:var(--rs);padding:13px 14px;margin-top:10px;}
+.tip{background:var(--ok-soft);border:.5px solid rgba(79,122,63,0.2);}
+.warn{background:var(--warn-soft);border:.5px solid rgba(178,58,46,0.18);}
+.tip-ic,.warn-ic{font-size:16px;flex-shrink:0;margin-top:1px;}
+.tip-b{font-size:13.5px;color:var(--ok);line-height:1.8;}
+.warn-b{font-size:13.5px;color:var(--warn);line-height:1.8;}
+.tip-b strong,.warn-b strong{font-weight:700;}
+
+/* CALC BOX */
+.calc{background:var(--surf-deep);border-radius:var(--rs);padding:14px 16px;margin-top:6px;}
+.calc-row{font-size:14px;font-weight:700;color:var(--ink);line-height:2;}
+.calc-row .op{color:var(--accent);margin:0 4px;}
+.calc-note{font-size:12.5px;color:var(--ink3);margin-top:6px;line-height:1.7;}
+
+/* PURCHASE FLOW */
+.pf{background:var(--surf);border-radius:var(--r);border:.5px solid var(--rule);overflow:hidden;margin-bottom:8px;}
+.pf-h{padding:11px 16px;font-size:13.5px;font-weight:700;}
+.pf-h.new{background:var(--accent-l);color:var(--accent-d);}
+.pf-h.add{background:var(--ok-soft);color:var(--ok);}
+.pf-b{padding:12px 16px;font-size:13.5px;color:var(--ink2);line-height:1.8;}
+
+/* SETTINGS LIST */
+.slist{display:flex;flex-direction:column;gap:8px;}
+.sitem{background:var(--surf);border-radius:12px;padding:14px 16px;border:.5px solid var(--rule);display:flex;align-items:flex-start;gap:12px;}
+.semoji{font-size:20px;flex-shrink:0;margin-top:1px;}
+.sitem-t{font-size:13.5px;font-weight:700;margin-bottom:3px;}
+.sitem-d{font-size:13.5px;color:var(--ink2);line-height:1.75;}
+
+/* DATA NOTE */
+.dnote{background:var(--surf);border-radius:var(--r);padding:20px;border:.5px solid var(--rule);}
+.dnote p{font-size:13.5px;color:var(--ink2);line-height:1.9;}
+.dnote ul{margin:10px 0 0 20px;}
+.dnote li{font-size:13.5px;color:var(--ink2);margin-bottom:5px;line-height:1.7;}
+
+/* FAQ */
+.faq{background:var(--surf);border-radius:var(--r);border:.5px solid var(--rule);margin-bottom:8px;overflow:hidden;}
+.faq summary{padding:15px 17px;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;list-style:none;display:flex;align-items:center;gap:9px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary .q{flex-shrink:0;width:22px;height:22px;background:var(--accent-l);color:var(--accent-d);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;}
+.faq summary .chev{margin-left:auto;color:var(--ink3);transition:transform .2s;font-size:12px;}
+.faq[open] summary .chev{transform:rotate(180deg);}
+.faq-a{padding:0 17px 16px 48px;font-size:13.5px;color:var(--ink2);line-height:1.9;}
+
+/* DIVIDER & TITLE */
+.divider{height:.5px;background:var(--rule);margin:30px 0;}
+.block-ttl{font-size:13px;font-weight:700;color:var(--accent-d);letter-spacing:0.05em;margin:0 0 12px;display:flex;align-items:center;gap:7px;}
+
+/* FOOTER */
+.footer{background:var(--accent-d);color:rgba(255,255,255,0.72);padding:34px 22px;text-align:center;margin-top:44px;}
+.footer-name{font-size:17px;font-weight:900;color:#fff;margin-bottom:6px;}
+.footer p{font-size:12.5px;line-height:1.85;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+.reveal.show{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="h-logo">
+    <div class="h-logo-ic"><span class="c">ぬ</span><span class="s">のーと</span></div>
+    <span class="h-logo-name">ぬのーと</span>
+  </div>
+  <div class="h-tagline">📖 つかいかたガイド</div>
+  <div class="h-sub">布好きさんのための、布と作品の記録アプリ</div>
+</div>
+
+<!-- QUICK NAV -->
+<div class="qnav">
+  <div class="qnav-label">読みたいところへジャンプ</div>
+  <div class="qnav-list">
+    <a href="#start"   class="qn">🚀 はじめに</a>
+    <a href="#fabric"  class="qn">🧵 生地</a>
+    <a href="#parts"   class="qn">🪡 付属品</a>
+    <a href="#works"   class="qn">👗 作品</a>
+    <a href="#history" class="qn">🛍️ 購入記録</a>
+    <a href="#summary" class="qn">📊 まとめ</a>
+    <a href="#settings"class="qn">⚙️ 設定</a>
+    <a href="#data"    class="qn">💾 保存とバックアップ</a>
+    <a href="#faq"     class="qn">❓ Q&amp;A</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- INTRO -->
+  <div class="intro reveal">
+    <div class="intro-emo">👋</div>
+    <div>
+      <div class="intro-ttl">ぬのーとへようこそ</div>
+      <div class="intro-body">このガイドでは、基本の使い方をひととおりご紹介します。むずかしい操作はありません。インストールも不要で、ダウンロードしたファイルをブラウザで開けばすぐ使えます。まずは手持ちの生地を1〜2枚、登録してみるところから始めてみてください。</div>
+    </div>
+  </div>
+
+  <!-- はじめに -->
+  <div id="start" class="sec reveal" style="margin-top:18px;">
+    <div class="flow">
+      <div class="flow-ttl">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        この順番で始めるとスムーズです
+      </div>
+      <div class="flow-row">
+        <span class="flow-step">⚙️ 設定</span><span class="flow-arr">→</span>
+        <span class="flow-step">🧵 生地</span><span class="flow-arr">→</span>
+        <span class="flow-step">🪡 付属品</span><span class="flow-arr">→</span>
+        <span class="flow-step">👗 作品</span><span class="flow-arr">→</span>
+        <span class="flow-step">🛍️ 購入記録</span>
+      </div>
+      <div class="flow-note">最初に「設定」（右上の歯車アイコン）で、生地ジャンルや購入先を登録しておくと、あとの入力がぐっとラクになります。もちろん、あとからいつでも追加できます。</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 生地タブ -->
+  <div id="fabric" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+      <div><div class="sec-tab">TAB 01</div><div class="sec-ttl">生地タブ</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-lead">手持ちの生地を写真つきで記録します。「あの生地どこいった？」「混率なんだっけ？」がスッと確認できる、ぬのーとの中心の画面です。</div>
+      <div class="card-label">登録のしかた</div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-b"><div class="step-t">画面下の「生地」タブを開く</div><div class="step-d">手持ち生地の一覧が表示されます。</div></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-b"><div class="step-t"><span class="btnname">＋ 生地を追加する</span> をタップ</div><div class="step-d">登録フォームが開きます。</div></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-b"><div class="step-t">わかる項目だけ入力する</div><div class="step-d">必須は生地名だけ。あとは空欄でもOKです。写真は撮影またはアルバムから選べます。</div></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-b"><div class="step-t"><span class="btnname">登録する</span> をタップ</div><div class="step-d">一覧に追加されます。あとから全部の項目を編集・削除できます。</div></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">入力できる項目</div>
+      <table class="ftbl">
+        <tr><th class="fname">項目</th><th class="fdesc">説明</th></tr>
+        <tr><td class="fname">生地名<span class="tag req">必須</span></td><td class="fdesc">例：ダブルガーゼ（グリーン）</td></tr>
+        <tr><td class="fname">写真<span class="tag opt">任意</span></td><td class="fdesc">撮影またはアルバムから選択</td></tr>
+        <tr><td class="fname">ジャンル<span class="tag opt">任意</span></td><td class="fdesc">布帛・ニット・レースなど。設定タブで自由に追加できます</td></tr>
+        <tr><td class="fname">素材<span class="tag opt">任意</span></td><td class="fdesc">綿100%・リネン混など。選択も自由入力もできます（混率メモにも）</td></tr>
+        <tr><td class="fname">購入先<span class="tag opt">任意</span></td><td class="fdesc">ショップ名。設定タブで追加できます</td></tr>
+        <tr><td class="fname">単価（円/m）</td><td class="fdesc">1mあたりの価格。作品の原価計算に使われます</td></tr>
+        <tr><td class="fname">生地幅（cm）<span class="tag opt">任意</span></td><td class="fdesc">110cm幅など。裁断のときの目安に</td></tr>
+        <tr><td class="fname">購入量（m）</td><td class="fdesc">買ったときの量。残量バーの基準になります</td></tr>
+        <tr><td class="fname">現在の残量（m）</td><td class="fdesc">＋ − ボタンで調整できます。作品を記録すると自動で減ります</td></tr>
+        <tr><td class="fname">用途メモ<span class="tag opt">任意</span></td><td class="fdesc">カンマ区切りでタグになります（例：ブラウス向き,洗濯機OK）</td></tr>
+      </table>
+    </div>
+
+    <div class="tip"><div class="tip-ic">📊</div><div class="tip-b"><strong>残量バー：</strong>残りが少なくなると「残り少」と表示されます。今どれだけ使えるか、開いた瞬間にわかります。</div></div>
+    <div class="tip"><div class="tip-ic">🔍</div><div class="tip-b"><strong>絞り込み：</strong>一覧上部のジャンルボタンをタップすると、布帛・ニットなど種類ごとに表示できます。生地が増えてきたら便利です。</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 付属品タブ -->
+  <div id="parts" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="10.5" cy="10.5" r="0.9" fill="currentColor" stroke="none"/><circle cx="13.5" cy="10.5" r="0.9" fill="currentColor" stroke="none"/><circle cx="10.5" cy="13.5" r="0.9" fill="currentColor" stroke="none"/><circle cx="13.5" cy="13.5" r="0.9" fill="currentColor" stroke="none"/></svg></div>
+      <div><div class="sec-tab">TAB 02</div><div class="sec-ttl">付属品タブ</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-lead">ボタン・ファスナー・ゴム・接着芯・Dカンなど、布以外の材料を管理します。基本の操作は生地タブと同じ。<span style="font-weight:700;color:var(--accent-d)">サイズ・種類別（バリエーション）</span>でまとめて管理できるのが特長です。</div>
+      <div class="card-label">登録のしかた</div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-b"><div class="step-t">「付属品」タブで <span class="btnname">＋ 付属品を追加する</span></div><div class="step-d">登録フォームが開きます。</div></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-b"><div class="step-t">品名・ジャンル・単位などを入力</div><div class="step-d">単位は「個・本・m・枚・セット」から選べます。</div></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-b"><div class="step-t">必要なら「サイズ・種類別で管理する」にチェック</div><div class="step-d">同じボタンの9mm・11mmなど、サイズごとに在庫を分けて記録できます。</div></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-b"><div class="step-t"><span class="btnname">登録する</span> をタップ</div><div class="step-d">付属品在庫の一覧に追加されます。</div></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">入力できる項目</div>
+      <table class="ftbl">
+        <tr><th class="fname">項目</th><th class="fdesc">説明</th></tr>
+        <tr><td class="fname">品名<span class="tag req">必須</span></td><td class="fdesc">例：パールボタン 11mm</td></tr>
+        <tr><td class="fname">写真<span class="tag opt">任意</span></td><td class="fdesc">付属品の写真</td></tr>
+        <tr><td class="fname">ジャンル<span class="tag opt">任意</span></td><td class="fdesc">ボタン・ファスナーなど。設定タブで追加できます</td></tr>
+        <tr><td class="fname">単位</td><td class="fdesc">個・本・m・枚・セット から選択</td></tr>
+        <tr><td class="fname">購入先<span class="tag opt">任意</span></td><td class="fdesc">どこで買ったか</td></tr>
+        <tr><td class="fname">サイズ・種類別</td><td class="fdesc">チェックすると、サイズごとに単価・在庫を分けて登録できます</td></tr>
+        <tr><td class="fname">単価（円）／在庫数</td><td class="fdesc">1単位あたりの価格と、今ある数。＋ − で調整できます</td></tr>
+        <tr><td class="fname">用途メモ<span class="tag opt">任意</span></td><td class="fdesc">カンマ区切りでタグになります</td></tr>
+      </table>
+    </div>
+
+    <div class="tip"><div class="tip-ic">📐</div><div class="tip-b"><strong>サイズ別管理：</strong>「9mmと11mm、どっちが何個あったっけ？」も、ひとつの付属品の中で分けて管理できます。</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 作品タブ -->
+  <div id="works" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.86H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.86l.58-3.57a2 2 0 00-1.34-2.23z"/></svg></div>
+      <div><div class="sec-tab">TAB 03</div><div class="sec-ttl">作品タブ</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-lead">作った作品を記録すると、使った材料の<strong>在庫が自動で減り</strong>、<strong>原価と利益も自動で計算</strong>されます。販売する方にも、振り返りたい方にも。</div>
+      <div class="card-label">記録のしかた</div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-b"><div class="step-t">「作品」タブで <span class="btnname">＋ 作品を記録する</span></div><div class="step-d">作品名・写真（メイン／サブの2枚）・制作日・販売価格を入力します。</div></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-b"><div class="step-t"><span class="btnname">＋ 材料を追加</span> で使った生地・付属品を選ぶ</div><div class="step-d">登録済みの材料から選んで、使った分量を入力します。いくつでも追加できます。</div></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-b"><div class="step-t">必要なら「販売手数料・送料」を入力</div><div class="step-d">販売サイトの手数料や送料を入れると、利益から差し引いて計算されます。</div></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-b"><div class="step-t"><span class="btnname">記録する</span> をタップ</div><div class="step-d">原価・利益が自動計算され、使った材料の在庫が自動で減ります。</div></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">原価・利益のしくみ</div>
+      <div class="calc">
+        <div class="calc-row">原価 <span class="op">=</span> 使った材料の（単価 × 分量）の合計</div>
+        <div class="calc-row">利益 <span class="op">=</span> 販売価格 <span class="op">−</span> 原価 <span class="op">−</span> 手数料・送料</div>
+        <div class="calc-note">手数料・送料まで差し引くので、実際の手取りに近い利益が見えます。この内容は確定申告用CSV（収入用）にもそのまま書き出せます。</div>
+      </div>
+    </div>
+
+    <div class="tip"><div class="tip-ic">✏️</div><div class="tip-b"><strong>あとから編集：</strong>使った分量を直して保存すると、在庫の差分も自動で計算しなおされます。</div></div>
+    <div class="tip"><div class="tip-ic">📸</div><div class="tip-b"><strong>写真は2枚：</strong>メイン1枚＋サブ1枚（部分・裏地など）を登録できます。</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 購入記録タブ -->
+  <div id="history" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+      <div><div class="sec-tab">TAB 04</div><div class="sec-ttl">購入記録タブ</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-lead">買ったものを記録しておくと、そのまま在庫に追加できます。記録は確定申告用CSV（経費用）にも書き出せるので、レシート代わりにもなります。</div>
+      <div class="card-label">記録のしかた</div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-b"><div class="step-t">「購入記録」タブで <span class="btnname">＋ 購入を記録する</span></div><div class="step-d">種別（生地 or 付属品）を選びます。</div></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-b"><div class="step-t">「追加先」を選ぶ</div><div class="step-d">新しく登録するか、手持ちのアイテムに買い足すかを選べます（下記参照）。</div></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-b"><div class="step-t">品名・購入日・購入先・単価・数量などを入力</div><div class="step-d">生地のときは生地幅も入れられます。サイズ・種類別での記録も可能です。</div></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-b"><div class="step-t"><span class="btnname">購入を記録して在庫に追加</span> をタップ</div><div class="step-d">記録と同時に、在庫へ反映されます。</div></div></div>
+      </div>
+    </div>
+
+    <div class="block-ttl">「追加先」の2つの選びかた</div>
+    <div class="pf"><div class="pf-h new">＋ 新規アイテムとして登録</div><div class="pf-b">はじめて買った生地・付属品のとき。生地タブ／付属品タブに<strong>新しいアイテムとして追加</strong>されます。</div></div>
+    <div class="pf"><div class="pf-h add">既存のアイテムに追加</div><div class="pf-b">以前から使っている材料を買い足したとき。登録済みのアイテムを選ぶと、<strong>在庫数に買った分が足されます</strong>。</div></div>
+
+    <div class="tip"><div class="tip-ic">🧾</div><div class="tip-b"><strong>確定申告に：</strong>たまった購入記録は、設定タブから「購入記録CSV（経費用）」として書き出せます。</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- まとめタブ -->
+  <div id="summary" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div><div class="sec-tab">TAB 05</div><div class="sec-ttl">まとめタブ</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-lead">操作は不要。登録したデータをもとに、今月の状況を自動で集計して表示します。</div>
+      <table class="ftbl">
+        <tr><th class="fname">表示される内容</th><th class="fdesc">説明</th></tr>
+        <tr><td class="fname">生地・付属品の種類数</td><td class="fdesc">今登録されている数</td></tr>
+        <tr><td class="fname">原価合計・利益合計</td><td class="fdesc">作品から自動集計</td></tr>
+        <tr><td class="fname">今月の購入量・消費量</td><td class="fdesc">生地のメートル数を集計</td></tr>
+        <tr><td class="fname">補充リスト</td><td class="fdesc">在庫が少なくなったアイテムを自動でリストアップ</td></tr>
+      </table>
+    </div>
+
+    <div class="tip"><div class="tip-ic">🛒</div><div class="tip-b"><strong>買い物の前に：</strong>「補充リスト」を見れば、足りない材料がひと目でわかります。買い忘れ・買いすぎ防止に。</div></div>
+    <div class="warn"><div class="warn-ic">📏</div><div class="warn-b"><strong>注意：</strong>今月の購入量・消費量は<strong>生地のメートル数のみ</strong>の集計です。付属品の個数などは含まれません。</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 設定 -->
+  <div id="settings" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+      <div><div class="sec-tab">画面右上の歯車アイコン</div><div class="sec-ttl">設定</div></div>
+    </div>
+
+    <div class="card-lead" style="margin-bottom:14px;">プルダウンの選択肢を自分好みにできます。最初に整えておくと登録がスムーズです。データの保存・書き出しもこの画面から行います。</div>
+
+    <div class="block-ttl">🗂 選択肢のカスタマイズ</div>
+    <div class="slist">
+      <div class="sitem"><div class="semoji">🧵</div><div><div class="sitem-t">生地ジャンル</div><div class="sitem-d">布帛・ニット・レースなどを自由に追加・削除。自分流の分類に育てられます。</div></div></div>
+      <div class="sitem"><div class="semoji">🪡</div><div><div class="sitem-t">付属品ジャンル</div><div class="sitem-d">ボタン・ファスナー・ゴム・芯地など、よく使う種類を登録。</div></div></div>
+      <div class="sitem"><div class="semoji">🔬</div><div><div class="sitem-t">素材</div><div class="sitem-d">綿100%・ポリエステル混など、素材の選択肢を追加できます。</div></div></div>
+      <div class="sitem"><div class="semoji">🏪</div><div><div class="sitem-t">購入先</div><div class="sitem-d">ユザワヤ・オカダヤ・楽天など、よく行くお店を登録すると選ぶだけで入力できます。</div></div></div>
+    </div>
+
+    <div class="block-ttl" style="margin-top:22px;">💾 データ管理（機種変更・バックアップ）</div>
+    <div class="card">
+      <div class="card-lead" style="margin-bottom:0;">すべてのデータを1つのファイルに保存（<strong>エクスポート</strong>）したり、そのファイルから復元（<strong>インポート</strong>）できます。機種変更やブラウザを変える前には、必ずエクスポートしておきましょう。新しい端末でファイルをインポートすれば、データをそのまま引き継げます。</div>
+    </div>
+
+    <div class="block-ttl" style="margin-top:22px;">🧾 CSV出力（確定申告用）</div>
+    <table class="ftbl">
+      <tr><th class="fname">種類</th><th class="fdesc">含まれる内容</th></tr>
+      <tr><td class="fname">購入記録CSV（経費用）</td><td class="fdesc">購入日・品名・金額・購入先</td></tr>
+      <tr><td class="fname">作品・売上CSV（収入用）</td><td class="fdesc">制作日・作品名・販売価格・原価・手数料送料・利益・メモ</td></tr>
+    </table>
+    <div class="tip"><div class="tip-ic">📊</div><div class="tip-b">CSVは表計算ソフト（Excel・Googleスプレッドシートなど）でそのまま開けます。確定申告の準備がぐっとラクになります。</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- データの保存とバックアップ -->
+  <div id="data" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></div>
+      <div><div class="sec-tab">大切なこと</div><div class="sec-ttl">データの保存とバックアップ</div></div>
+    </div>
+
+    <div class="dnote">
+      <p>📍 記録したデータは、<strong>あなたの端末（ブラウザ）の中だけ</strong>に保存されます。どこかのサーバーに送られることはありません。写真つきでもたっぷり保存できます。</p>
+      <br>
+      <p style="color:var(--warn);font-weight:700;">⚠️ 次の場合はデータが消えることがあります</p>
+      <ul>
+        <li>ブラウザの「サイトデータ（閲覧データ）を完全に削除」したとき</li>
+        <li>プライベート／シークレットモードで開いていたとき</li>
+        <li>別の端末・別のブラウザで開いたとき（データは引き継がれません）</li>
+      </ul>
+      <div class="tip"><div class="tip-ic">💾</div><div class="tip-b"><strong>月に一度のバックアップを習慣に。</strong>設定タブの「エクスポート」でファイルに保存しておけば安心です。30日以上保存していないと、画面上部にお知らせが出ます（「今すぐ保存」からすぐ書き出せます）。</div></div>
+      <div class="tip"><div class="tip-ic">↩️</div><div class="tip-b"><strong>うっかり削除しても大丈夫：</strong>アイテムを削除した直後に出る「元に戻す」ボタンで、すぐに戻せます。</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <div id="faq" class="sec reveal">
+    <div class="sec-head">
+      <div class="sec-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div><div class="sec-tab">よくあるご質問</div><div class="sec-ttl">Q &amp; A</div></div>
+    </div>
+
+    <details class="faq"><summary><span class="q">Q</span>複数の端末で使えますか？<span class="chev">▼</span></summary><div class="faq-a">データは使っている端末の中に保存されるため、自動同期はされません。ただし「エクスポート」で書き出したファイルを別の端末で「インポート」すれば、データを引き継いで使えます。</div></details>
+    <details class="faq"><summary><span class="q">Q</span>バックアップはどうすればいいですか？<span class="chev">▼</span></summary><div class="faq-a">設定タブの「エクスポート」でデータをファイルに保存できます。月に一度を目安に、機種変更やブラウザの変更前には必ず書き出しておくのがおすすめです。</div></details>
+    <details class="faq"><summary><span class="q">Q</span>インストールは必要ですか？<span class="chev">▼</span></summary><div class="faq-a">不要です。ダウンロードしたHTMLファイルをブラウザで開くだけで使えます。スマートフォンでもPCでも動きます。</div></details>
+    <details class="faq"><summary><span class="q">Q</span>登録できる件数に上限はありますか？<span class="chev">▼</span></summary><div class="faq-a">実用上の上限はありません。写真つきでも数千件の登録に耐えられるように作られています。</div></details>
+    <details class="faq"><summary><span class="q">Q</span>アップデートは有料ですか？<span class="chev">▼</span></summary><div class="faq-a">買い切りなので、追加費用はかかりません。改善版をリリースした場合はBOOTHよりご案内します。</div></details>
+    <details class="faq"><summary><span class="q">Q</span>返品はできますか？<span class="chev">▼</span></summary><div class="faq-a">ダウンロード商品の性質上、購入後の返品・返金はお受けできません。ご不明な点は、購入前にお気軽にお問い合わせください。</div></details>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-name">ぬのーと</div>
+  <p>布好きさんのための、布と作品の記録アプリ<br>使ってみての感想・ご要望は、いつでもお気軽にお寄せください 🧵</p>
+</div>
+
+<script>
+  const els=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}});},{threshold:0.08});
+  els.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
